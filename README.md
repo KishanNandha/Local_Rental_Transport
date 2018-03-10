@@ -6,7 +6,7 @@ Local Rental Transport is a service, in which customers arrive to rent Transport
 It provides “Drop Anywhere & Pick from Anywhere” service.
 
 # Technology Used: 
-Java and Android
+Java
 
 # Front End:
 Html, JavaScript, Jsp and Bootstrap
