@@ -1,0 +1,38 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/security 
+ http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http auto-config="true">
+
+		<intercept-url pattern="/" access="permitAll" />
+
+		<intercept-url pattern="/registration" access="permitAll" />
+
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/cro/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_CRO')" />
+
+		<!-- access denied page -->
+		<access-denied-handler error-page="/Access_Denied" />
+
+		<form-login login-processing-url="/login" login-page="/login"
+			default-target-url="/user/home" username-parameter="username"
+			password-parameter="password" authentication-failure-url="/login?error" />
+		<!-- enable csrf protection -->
+		<csrf />
+
+	</http>
+
+	<beans:bean id="customUserDetailsService"
+		class="com.LRT.service.CustomUserDetailsService" />
+
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+		<authentication-provider user-service-ref="customUserDetailsService" />
+	</authentication-manager>
+
+	
+</beans:beans>
