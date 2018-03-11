@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.LRT.ApplicationConstants.ViewConstants;
 import com.LRT.model.Bookings;
 import com.LRT.service.BookingService;
 
@@ -45,23 +46,7 @@ public class UserController {
 	@RequestMapping(value = "/home")
 	public String homePage(ModelMap model, HttpSession httpsession) {
 		httpsession.setAttribute("sessionuser", getPrincipal());
-
-		return "Home2";
-	}
-
-	@RequestMapping(value = "/about")
-	public String aboutPage() {
-		return "About";
-	}
-
-	@RequestMapping(value = "/contact")
-	public String contactPage() {
-		return "Contact";
-	}
-
-	@RequestMapping(value = "/subscribe")
-	public String subscribePage() {
-		return "Subscription";
+		return ViewConstants.USERDASHBOARD;
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -76,31 +61,33 @@ public class UserController {
 		return "redirect:/login";
 	}
 
-
 	@RequestMapping(value = "/bookride")
 	public String BookRide(ModelMap model) {
-		
 		Bookings booking = new Bookings();
 		model.addAttribute("booking", booking);
 		model.addAttribute("storeslist", bookingservice.getstores());
-		System.out.println(bookingservice.getstores());
-		return "BookRide";
+		return ViewConstants.USERBOOKRIDE;
 	}
 
 
 	@RequestMapping(value = "/dobooking", method = RequestMethod.POST)
 	public String DoBooking(ModelMap model, @Valid @ModelAttribute("booking") Bookings booking,
 			BindingResult theBindingResult) {
+		booking.setUserName(getPrincipal());
 		if (theBindingResult.hasErrors()) {
-			return "BookRide";
+			return ViewConstants.USERBOOKRIDE;
 		} else {
-			System.out.println(booking);
-			booking.setUserName(getPrincipal());
-			bookingservice.addbooking(booking);
-			model.addAttribute("bookingid", booking.getBookingId());
-			return "BookingConform";
+			if (bookingservice.chkBooking(booking)) {
+				bookingservice.addbooking(booking);
+				model.addAttribute("bookingfailed", 0);
+				model.addAttribute("bookingid", booking.getBookingId());
+				return ViewConstants.USERBOOKINGCONFORM;
+			} else {
+				model.addAttribute("bookingfailed", 1);
+				model.addAttribute("bookingerrormsg", "you have already booked this ride");
+				return ViewConstants.USERBOOKINGCONFORM;
+			}
 		}
-
 	}
 
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)

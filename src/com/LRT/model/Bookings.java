@@ -93,6 +93,22 @@ public class Bookings {
 				+ ", departureDate=" + departureDate + ", departureTime=" + departureTime + ", estimatedEndTime="
 				+ estimatedEndTime + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Bookings booking = (Bookings) obj;
+		if (booking.departureDate == this.departureDate) {
+			if (booking.departureTime == this.departureTime || booking.estimatedEndTime == booking.estimatedEndTime) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+
+	}
 	
 
 }

@@ -44,4 +44,25 @@ public class BookingService {
 
 		return bookingdao.getBookingsById(bookingid);
 	}
+
+	@Transactional
+	public boolean chkBooking(Bookings booking) {
+
+		List<Bookings> list = bookingdao.listBookingsOfUser(booking.getUserName());
+		if (list != null && list.size() >= 1) {
+		int flag = 0;
+			for (Bookings b : list) {
+			if (b.equals(booking)) {
+				flag = 1;
+				}
+			}
+		if (flag == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		} else {
+			return true;
+		}
+	}
 }

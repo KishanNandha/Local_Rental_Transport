@@ -33,7 +33,6 @@ public class BookingDAO {
 		Criterion criterion = Restrictions.eq("userName", username);
 		criteria.add(criterion);
 		Bookings booking = (Bookings) criteria.uniqueResult();
-		System.out.println(booking);
 		return booking;
 	}
 
@@ -77,6 +76,17 @@ public class BookingDAO {
 	public List<Bookings> listBookings() {
 		Session session = sessionFactory.getCurrentSession();
 		List<Bookings> bookingList = session.createQuery("from Bookings").list();
+		return bookingList;
+
+	}
+
+	@Transactional
+	public List<Bookings> listBookingsOfUser(String username) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Bookings.class);
+		Criterion criterion = Restrictions.eq("userName", username);
+		criteria.add(criterion);
+		List<Bookings> bookingList = criteria.list();
 		return bookingList;
 
 	}
