@@ -46,10 +46,22 @@ public class BookingService {
 	}
 
 	@Transactional
+	public List<Bookings> getBookingsByUsername(String username) {
+
+		return bookingdao.listBookingsOfUser(username);
+	}
+
+	@Transactional
+	public void deletebooking(Bookings booking) {
+
+		bookingdao.removeBooking(booking);
+	}
+
+	@Transactional
 	public boolean chkBooking(Bookings booking) {
 
 		List<Bookings> list = bookingdao.listBookingsOfUser(booking.getUserName());
-		if (list != null && list.size() >= 1) {
+		if (list.size() >= 1) {
 		int flag = 0;
 			for (Bookings b : list) {
 			if (b.equals(booking)) {

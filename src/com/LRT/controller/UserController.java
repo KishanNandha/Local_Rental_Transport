@@ -1,5 +1,7 @@
 package com.LRT.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -90,10 +92,31 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+	@RequestMapping(value = "/viewbookings")
+	public String ViewBookingPage(ModelMap model) {
+		List<Bookings> list = bookingservice.getBookingsByUsername(getPrincipal());
+		System.out.println(list.toString());
+		model.addAttribute("bookinglist", list);
+		model.addAttribute("bookingdeletedflag ", 0);
+		return ViewConstants.USERVIEWBOOKING;
+	}
+
+	@RequestMapping(value = "/Access_Denied", method = RequestMethod.POST)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
 		return "accessDenied";
+	}
+
+	@RequestMapping(value = "/deletebooking", method = RequestMethod.GET)
+	public String deleteBooking(ModelMap model, HttpServletRequest request) {
+		Bookings booking = bookingservice
+				.getBookingbyid(Integer.parseInt(request.getParameter("bookingid")));
+		bookingservice.deletebooking(booking);
+		model.addAttribute("bookingdeletedflag", 1);
+		model.addAttribute("bookingdeletedmsg", "Deleted: " + booking.toString());
+		List<Bookings> list = bookingservice.getBookingsByUsername(getPrincipal());
+		model.addAttribute("bookinglist", list);
+		return ViewConstants.USERVIEWBOOKING;
 	}
 
 	private String getPrincipal() {

@@ -5,4 +5,5 @@ public interface ViewConstants {
 	public static final String USERDASHBOARD = "User_Dashboard";
 	public static final String USERBOOKRIDE = "User_Bookride";
 	public static final String USERBOOKINGCONFORM = "User_BookingConform";
+	public static final String USERVIEWBOOKING = "User_View_Bookings";
 }

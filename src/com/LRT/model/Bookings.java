@@ -97,8 +97,9 @@ public class Bookings {
 	@Override
 	public boolean equals(Object obj) {
 		Bookings booking = (Bookings) obj;
-		if (booking.departureDate == this.departureDate) {
-			if (booking.departureTime == this.departureTime || booking.estimatedEndTime == booking.estimatedEndTime) {
+		if (booking.departureDate.equals(this.departureDate)) {
+			if (booking.departureTime.equals(this.departureTime)
+					|| booking.estimatedEndTime.equals(this.estimatedEndTime)) {
 				return true;
 			} else {
 				return false;
