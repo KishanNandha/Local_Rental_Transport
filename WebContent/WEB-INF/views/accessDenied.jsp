@@ -25,28 +25,17 @@
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
-	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
-	        </li>
-	        <li class="breadcrumb-item active">Booking Conform</li>
+	        
+	        <li class="breadcrumb-item active">Access Denied</li>
 	      </ol>
-	      <c:if test="${bookingfailed == 0}">
-				<div class="alert alert-success alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Success!</strong><br/>
-				  <strong>Booking Id: &nbsp ${bookingid} }</strong>
-				</div>	
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.			
-		  </c:if>
-		  <c:if test="${bookingfailed == 1}">
-				<div class="alert alert-danger alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Failed!</strong><br/>
-				  <strong>${bookingerrormsg} }</strong>
-				</div>
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.
-		  </c:if>
-        </div>
+    <!-- Page Content -->
+    <div class="container">
+    	<div class="alert alert-dismissible alert-danger">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button><br/>
+		  <strong>Dear ${user} You Are Not Authorised to View This Section</strong><br/>  
+		</div>
+		<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.
+	   </div>
     </div>
     <%@include file="footer.jsp"%>
     <!-- Bootstrap core JavaScript-->

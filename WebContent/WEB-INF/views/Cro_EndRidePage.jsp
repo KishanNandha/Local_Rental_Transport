@@ -20,32 +20,17 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-	<%@include file="NavBar_USER.jsp"%>
+	<%@include file="NavBar_CRO.jsp"%>
     <div class="content-wrapper">
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
 	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
+	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Booking Conform</li>
+	        <li class="breadcrumb-item active">Blank Page</li>
 	      </ol>
-	      <c:if test="${bookingfailed == 0}">
-				<div class="alert alert-success alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Success!</strong><br/>
-				  <strong>Booking Id: &nbsp ${bookingid} }</strong>
-				</div>	
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.			
-		  </c:if>
-		  <c:if test="${bookingfailed == 1}">
-				<div class="alert alert-danger alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Failed!</strong><br/>
-				  <strong>${bookingerrormsg} }</strong>
-				</div>
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.
-		  </c:if>
+	      
         </div>
     </div>
     <%@include file="footer.jsp"%>

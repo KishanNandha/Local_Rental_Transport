@@ -57,4 +57,32 @@ public class StartRideService {
 		Bookings booking = bookingdao.getBookingsByName(startride.getUserName());
 		bookingdao.removeBooking(booking);
 	}
+
+	@Transactional
+	public List<StartRide> getStartRideByUsername(String username) {
+
+		return startridedao.listStartRideOfUser(username);
+	}
+
+	@Transactional
+	public boolean chkStartRide(StartRide startride) {
+
+		List<StartRide> list = startridedao.listStartRideOfUser(startride.getUserName());
+		if (list.size() >= 1) {
+			int flag = 0;
+			for (StartRide b : list) {
+				if (b.equals(startride)) {
+					flag = 1;
+				}
+			}
+			if (flag == 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return true;
+		}
+	}
+
 }

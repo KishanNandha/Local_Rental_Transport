@@ -99,4 +99,27 @@ public class StartRide {
 		this.estimatedEndTime = estimatedEndTime;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		StartRide booking = (StartRide) obj;
+		if (booking.departureDate.equals(this.departureDate)) {
+			if (booking.departureTime.equals(this.departureTime)
+					|| booking.estimatedEndTime.equals(this.estimatedEndTime)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return "StartRide [startRideId=" + startRideId + ", userName=" + userName + ", startStoreName=" + startStoreName
+				+ ", departureDate=" + departureDate + ", departureTime=" + departureTime + ", estimatedEndTime="
+				+ estimatedEndTime + ", cycleId=" + cycleId + "]";
+	}
+
 }

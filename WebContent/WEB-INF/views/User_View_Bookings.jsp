@@ -33,7 +33,7 @@
 	      </ol>
 	      <br/>
 	      <c:if test="${bookingdeletedflag == 1}">
-				<div class="alert alert-success alert-dismissible">
+				<div class="alert alert-danger alert-dismissible">
 				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				  <strong>Booking Deleted!</strong><br/>
 				  <strong>${bookingdeletedmsg}</strong>

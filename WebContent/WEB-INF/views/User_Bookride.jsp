@@ -45,7 +45,7 @@
                             <form:input  path="departureDate" class="form-control form-control-md"  type="date" name="departureDate" />
                         </td>
                         <td>
-                            <form:errors path="departureDate" cssClass="error" />
+                            <form:errors path="departureDate" cssClass="alert alert-danger" />
                         </td>
                     </tr>
                     <tr class="form-group row" >
@@ -75,7 +75,7 @@
 							</form:select>
                         </td>
                         <td>
-                            <form:errors  path="departureTime" cssClass="error" />
+                            <form:errors  path="departureTime" cssClass="alert alert-danger" />
                         </td>
                     </tr>
                     <tr class="form-group row" >
@@ -105,7 +105,7 @@
 							</form:select>
                         </td>
                         <td>
-                            <form:errors path="estimatedEndTime" cssClass="error" />
+                            <form:errors path="estimatedEndTime" cssClass="alert alert-danger" />
                         </td>
                     </tr>
               
@@ -120,7 +120,7 @@
 						</form:select>
                         </td>
                          <td>
-                            <form:errors path="startStoreName" cssClass="error" />
+                            <form:errors path="startStoreName" cssClass="alert alert-danger" />
                         </td>
                     </tr>
                   

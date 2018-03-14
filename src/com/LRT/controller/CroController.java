@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.LRT.ApplicationConstants.ViewConstants;
 import com.LRT.model.EndRide;
 import com.LRT.model.StartRide;
 import com.LRT.service.BookingService;
@@ -48,49 +49,75 @@ public class CroController {
 	@RequestMapping(value = "/home")
 	public String homePage(ModelMap model, HttpSession httpsession) {
 		httpsession.setAttribute("sessionuser", getPrincipal());
+
+		return ViewConstants.CRODASHBOARD;
+	}
+
+	@RequestMapping(value = "/startridewithoutbooking")
+	public String startRidewithoutbooking(ModelMap model) {
 		StartRide startRide = new StartRide();
 		model.addAttribute("startride", startRide);
 		model.addAttribute("storeslist", bookingservice.getstores());
 		model.addAttribute("cyclelist", startrideservice.getcycles());
-		System.out.println(startrideservice.getcycles());
-		return "CROHome";
+		return ViewConstants.CROSTARTRIDEWITHOUTBOOKINGPAGE;
 	}
 
+
 	@RequestMapping(value = "/doaddridewithoutbooking", method = RequestMethod.POST)
-	public String Dostart(ModelMap model, @Valid @ModelAttribute("startride") StartRide startRide,
+	public String Dostart(ModelMap model, @Valid @ModelAttribute("startride") StartRide startride,
 			BindingResult theBindingResult) {
 		if (theBindingResult.hasErrors()) {
-			return "CROHome";
+			return ViewConstants.CROSTARTRIDEWITHOUTBOOKINGPAGE;
 		} else {
-			startrideservice.addstartride(startRide);
-			model.addAttribute("startride", startRide.getStartRideId());
-			return "StartRideConform";
+			if (startrideservice.chkStartRide(startride)) {
+				startrideservice.addstartride(startride);
+				model.addAttribute("startridefailed", 0);
+				model.addAttribute("startrideid", startride.getStartRideId());
+				return ViewConstants.CROSTARTRIDECONFORM;
+			} else {
+				model.addAttribute("startridefailed", 1);
+				model.addAttribute("startrideerrormsg", "you have already started this ride");
+				return ViewConstants.CROSTARTRIDECONFORM;
+			}
+
 		}
 
 	}
 
+	@RequestMapping(value = "/startridewithbooking")
+	public String startridewithbooking(ModelMap model) {
+
+		return ViewConstants.CROSTARTRIDEWITHBOOKINGPANEL;
+	}
+
 	@RequestMapping(value = "/addridewithbooking")
-	public String StartRidePage(ModelMap model, HttpServletRequest request) {
+	public String startridewithbookingpage(ModelMap model, HttpServletRequest request) {
 		StartRide startRide = new StartRide();
 		model.addAttribute("startride", startRide);
 		model.addAttribute("storeslist", bookingservice.getstores());
 		model.addAttribute("cyclelist", startrideservice.getcycles());
 		model.addAttribute("booking",
 				bookingservice.getBookingbyid(Integer.parseInt(request.getParameter("bookingid"))));
-		return "StartRideWithBooking";
+		return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
 	}
 
 	@RequestMapping(value = "/doaddridewithbooking", method = RequestMethod.POST)
 	public String Dostartride(ModelMap model, @Valid @ModelAttribute("startride") StartRide startRide,
 			BindingResult theBindingResult) {
 		if (theBindingResult.hasErrors()) {
-			return "StartRideWithBooking";
+			return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
 		} else {
 			startrideservice.addstartridewithbookingid(startRide);
 			model.addAttribute("startride", startRide.getStartRideId());
-			return "StartRideConform";
+			return ViewConstants.CROSTARTRIDECONFORM;
 		}
 
+	}
+
+	@RequestMapping(value = "/endridepanel")
+	public String EndRidePanel(ModelMap model, HttpServletRequest request) {
+
+		return ViewConstants.CROENDRIDEPANEL;
 	}
 
 	@RequestMapping(value = "/endride")
@@ -100,7 +127,7 @@ public class CroController {
 		model.addAttribute("storeslist", bookingservice.getstores());
 		model.addAttribute("statride",
 				startrideservice.getStartRidebyid(Integer.parseInt(request.getParameter("startrideid"))));
-		return "EndRidePage";
+		return ViewConstants.CROENDRIDEPAGE;
 	}
 
 	@RequestMapping(value = "/doendride", method = RequestMethod.POST)
