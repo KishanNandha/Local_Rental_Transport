@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.LRT.model.Bookings;
+import com.LRT.model.StartRide;
 
 @Repository("bookingdao")
 @Transactional
@@ -27,11 +28,21 @@ public class BookingDAO {
 		return currentSession.get(Bookings.class, bookingid);
 	}
 
-	public Bookings getBookingsByName(String username) {
+	/*
+	 * @Transactional public Bookings getBookingsByName(String username) { Session
+	 * currentSession = sessionFactory.getCurrentSession(); Criteria criteria =
+	 * currentSession.createCriteria(Bookings.class); Criterion criterion =
+	 * Restrictions.eq("userName", username); criteria.add(criterion); Bookings
+	 * booking = (Bookings) criteria.uniqueResult(); return booking; }
+	 */
+	@Transactional
+	public Bookings getBookingsByStartRide(String username, StartRide startride) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Criteria criteria = currentSession.createCriteria(Bookings.class);
-		Criterion criterion = Restrictions.eq("userName", username);
-		criteria.add(criterion);
+		Criterion criterion1 = Restrictions.eq("departureDate", startride.getDepartureDate());
+		Criterion criterion2 = Restrictions.eq("departureTime", startride.getDepartureTime());
+		criteria.add(criterion1);
+		criteria.add(criterion2);
 		Bookings booking = (Bookings) criteria.uniqueResult();
 		return booking;
 	}

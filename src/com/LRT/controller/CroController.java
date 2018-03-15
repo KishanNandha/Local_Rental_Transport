@@ -86,7 +86,6 @@ public class CroController {
 
 	@RequestMapping(value = "/startridewithbooking")
 	public String startridewithbooking(ModelMap model) {
-
 		return ViewConstants.CROSTARTRIDEWITHBOOKINGPANEL;
 	}
 
@@ -102,14 +101,24 @@ public class CroController {
 	}
 
 	@RequestMapping(value = "/doaddridewithbooking", method = RequestMethod.POST)
-	public String Dostartride(ModelMap model, @Valid @ModelAttribute("startride") StartRide startRide,
+	public String Dostartride(ModelMap model, @Valid @ModelAttribute("startride") StartRide startride,
 			BindingResult theBindingResult) {
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
 		} else {
-			startrideservice.addstartridewithbookingid(startRide);
-			model.addAttribute("startride", startRide.getStartRideId());
-			return ViewConstants.CROSTARTRIDECONFORM;
+			if (startrideservice.chkStartRide(startride)) {
+				startrideservice.addstartridewithbookingid(startride);
+				model.addAttribute("startridefailed", 0);
+				model.addAttribute("startrideid", startride.getStartRideId());
+				return ViewConstants.CROSTARTRIDECONFORM;
+
+			}
+			else {
+				model.addAttribute("startridefailed", 1);
+				model.addAttribute("startrideerrormsg", "you have already started this ride");
+				return ViewConstants.CROSTARTRIDECONFORM;
+			}
+
 		}
 
 	}

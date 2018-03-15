@@ -54,7 +54,7 @@ public class StartRideService {
 	@Transactional
 	public void addstartridewithbookingid(StartRide startride) {
 		startridedao.addStartRide(startride);
-		Bookings booking = bookingdao.getBookingsByName(startride.getUserName());
+		Bookings booking = bookingdao.getBookingsByStartRide(startride.getUserName(), startride);
 		bookingdao.removeBooking(booking);
 	}
 
