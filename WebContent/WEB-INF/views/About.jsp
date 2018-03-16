@@ -32,6 +32,11 @@
 	        </li>
 	        <li class="breadcrumb-item active">About Us</li>
 	      </ol>
+	      <div class="alert  progress-bar bg-primary active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >About us!!</strong>
+			</div>
+			<br/>
 	       <!-- Introduction Row -->
       <h1 class="my-4">About Us<br/>
         <small>It's Nice to Meet You!</small>

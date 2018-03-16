@@ -21,7 +21,7 @@ public class UserDetailsDAO {
 	public UserDetails getUserDetailsByName(String username) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Criteria criteria = currentSession.createCriteria(UserDetails.class);
-		Criterion criterion = Restrictions.eq("username", username);
+		Criterion criterion = Restrictions.eq("userName", username);
 		criteria.add(criterion);
 		return (UserDetails) criteria.uniqueResult();
 	}

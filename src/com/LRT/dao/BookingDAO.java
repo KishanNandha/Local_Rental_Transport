@@ -75,7 +75,7 @@ public class BookingDAO {
 	public boolean removeBooking(Bookings booking) {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
-			System.out.println("deletinmg" + booking);
+			System.out.println("@@@@@@@@@@@@deletinmg" + booking);
 			currentSession.delete(booking);
 			return true;
 		} catch (HibernateException e) {

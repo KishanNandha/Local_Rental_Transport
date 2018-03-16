@@ -28,8 +28,21 @@
 	        <li class="breadcrumb-item">
 	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Blank Page</li>
+	        <li class="breadcrumb-item active">Start Ride</li>
 	      </ol>
+	      <div class="alert  progress-bar bg-info active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >Start Ride!!</strong>
+			</div>
+			<br/>
+	      <c:if test="${nobookingfound == 1}">
+				<div class="alert alert-danger alert-dismissible">
+				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				  <strong>No Booking Found!</strong><br/>
+				  <strong>${msg} </strong>
+				</div>	
+				<a href="${pageContext.request.contextPath}/cro/home" class="link">Go to Home</a>.			
+		  </c:if>
 	       <div class="panel panel-info">
 		      <div class="panel-heading">Enter Booking Id:</div>
 		      <div class="panel-body">

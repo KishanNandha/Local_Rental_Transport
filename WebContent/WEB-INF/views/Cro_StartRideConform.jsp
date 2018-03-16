@@ -30,11 +30,12 @@
 	        </li>
 	        <li class="breadcrumb-item active">Conform</li>
 	      </ol>
+	
 	      <c:if test="${startridefailed == 0}">
 				<div class="alert alert-success alert-dismissible">
 				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				  <strong>startride Success!</strong><br/>
-				  <strong>startride Id: &nbsp ${startrideid} }</strong>
+				  <strong>startride Id: &nbsp ${startrideid} </strong>
 				</div>	
 				<a href="${pageContext.request.contextPath}/cro/home" class="link">Go to Home</a>.			
 		  </c:if>
@@ -42,7 +43,7 @@
 				<div class="alert alert-danger alert-dismissible">
 				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				  <strong>startride Failed!</strong><br/>
-				  <strong>${startrideerrormsg} }</strong>
+				  <strong>${startrideerrormsg} </strong>
 				</div>
 				<a href="${pageContext.request.contextPath}/cro/home" class="link">Go to Home</a>.
 		  </c:if>

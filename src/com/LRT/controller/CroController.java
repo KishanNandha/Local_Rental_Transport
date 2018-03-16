@@ -39,6 +39,9 @@ public class CroController {
 	@Autowired
 	private EtartRideService endrideservice;
 
+	@Autowired
+	private com.LRT.service.UserDetailsSevice userdetailsservice;
+
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 
@@ -86,28 +89,42 @@ public class CroController {
 
 	@RequestMapping(value = "/startridewithbooking")
 	public String startridewithbooking(ModelMap model) {
+		model.addAttribute("nobookingfound", 0);
 		return ViewConstants.CROSTARTRIDEWITHBOOKINGPANEL;
 	}
 
 	@RequestMapping(value = "/addridewithbooking")
 	public String startridewithbookingpage(ModelMap model, HttpServletRequest request) {
-		StartRide startRide = new StartRide();
-		model.addAttribute("startride", startRide);
-		model.addAttribute("storeslist", bookingservice.getstores());
-		model.addAttribute("cyclelist", startrideservice.getcycles());
-		model.addAttribute("booking",
-				bookingservice.getBookingbyid(Integer.parseInt(request.getParameter("bookingid"))));
-		return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
+		if (bookingservice.getBookingbyid(Integer.parseInt(request.getParameter("bookingid"))) != null)
+		{
+
+			StartRide startRide = new StartRide();
+			model.addAttribute("startride", startRide);
+			model.addAttribute("storeslist", bookingservice.getstores());
+			model.addAttribute("cyclelist", startrideservice.getcycles());
+			model.addAttribute("booking",
+					bookingservice.getBookingbyid(Integer.parseInt(request.getParameter("bookingid"))));
+
+			return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
+
+		} else {
+			model.addAttribute("nobookingfound", 1);
+			model.addAttribute("msg", "no booking found ...try other booking id");
+			return ViewConstants.CROSTARTRIDEWITHBOOKINGPANEL;
+		}
+
 	}
 
 	@RequestMapping(value = "/doaddridewithbooking", method = RequestMethod.POST)
 	public String Dostartride(ModelMap model, @Valid @ModelAttribute("startride") StartRide startride,
-			BindingResult theBindingResult) {
+			BindingResult theBindingResult, HttpServletRequest request) {
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
 		} else {
 			if (startrideservice.chkStartRide(startride)) {
-				startrideservice.addstartridewithbookingid(startride);
+
+				startrideservice.addstartridewithbookingid(Integer.parseInt(request.getParameter("bookingid")),
+						startride);
 				model.addAttribute("startridefailed", 0);
 				model.addAttribute("startrideid", startride.getStartRideId());
 				return ViewConstants.CROSTARTRIDECONFORM;
@@ -143,12 +160,22 @@ public class CroController {
 	public String DoEndride(ModelMap model, @Valid @ModelAttribute("endride") EndRide endRide,
 			BindingResult theBindingResult) {
 		if (theBindingResult.hasErrors()) {
-			return "EndRidePage";
+			return ViewConstants.CROENDRIDEPANEL;
 		} else {
-			endRide.setTotalTime(6);
-			endrideservice.addendride(endRide);
-			model.addAttribute("endrideid:", endRide.getEndRideId());
-			return "EndRideConform";
+			if (endrideservice.chkEndRide(endRide)) {
+				endRide.setTotalTime(6);
+				endRide.setTotalAmount(60);
+				endrideservice.addendride(endRide);
+				model.addAttribute("endrideid:", endRide.getEndRideId());
+				model.addAttribute("endridefailed", 0);
+				model.addAttribute("TotalTime", endRide.getTotalTime());
+				model.addAttribute("TotalAmount", endRide.getTotalAmount());
+				return ViewConstants.CROENDRIDECONFORM;
+			} else {
+				model.addAttribute("endridefailed", 1);
+				return ViewConstants.CROENDRIDECONFORM;
+			}
+
 		}
 
 	}
@@ -164,6 +191,60 @@ public class CroController {
 		return "redirect:/login";
 	}
 
+	@RequestMapping(value = "/viewallridesofstorepanel", method = RequestMethod.GET)
+	public String ViewAllRideOfStore(ModelMap model) {
+		model.addAttribute("storeslist", bookingservice.getstores());
+		return ViewConstants.CROVIEWALLRIDEOFSTOREPANEL;
+	}
+
+	@RequestMapping(value = "/viewalluserdetailspanel", method = RequestMethod.GET)
+	public String ViewAllUserDetails(ModelMap model) {
+		return ViewConstants.CROVIEWALLUSERDETAILSPANELS;
+	}
+
+	@RequestMapping(value = "/viewalluserdetails")
+	public String ViewAllUserDetailsPage(ModelMap model, HttpServletRequest request) {
+		model.addAttribute("userdetails", (userdetailsservice).getUserDatails(request.getParameter("username")));
+		return ViewConstants.CROVIEWALLUSERDETAILS;
+	}
+
+	@RequestMapping(value = "/viewallridesofuserpanel", method = RequestMethod.GET)
+	public String ViewAllRideOfuser(ModelMap model) {
+		return ViewConstants.CROVIEWALLUSERRIDEPANEL;
+	}
+
+	@RequestMapping(value = "/viewallrideofuser")
+	public String ViewAllRideOfuserPage(ModelMap model, HttpServletRequest request) {
+		model.addAttribute("ridelist", endrideservice.getAllRideDetailsForUser(request.getParameter("username")));
+		return ViewConstants.CROVIEWALLUSERRIDE;
+	}
+
+	@RequestMapping(value = "/viewallrideofstore")
+	public String ViewAllRideOfStorePage(ModelMap model, HttpServletRequest request) {
+		model.addAttribute("startridelist", endrideservice.getAllStartRideDetails(request.getParameter("storename")));
+		model.addAttribute("endridelist", endrideservice.getAllEndRideDetails(request.getParameter("storename")));
+		return ViewConstants.CROVIEWALLRIDEOFSTORE;
+	}
+
+	@RequestMapping(value = "/viewallendride", method = RequestMethod.GET)
+	public String ViewAllEndRide(ModelMap model) {
+		model.addAttribute("endridelist", endrideservice.ListEndRide());
+		return ViewConstants.CROVIEWALLENDRIDE;
+	}
+
+	@RequestMapping(value = "/viewallstartride", method = RequestMethod.GET)
+	public String ViewAllStartRide(ModelMap model) {
+		model.addAttribute("storeslist", bookingservice.getstores());
+		return ViewConstants.CROVIEWALLSTARTRIDE;
+	}
+
+	@RequestMapping(value = "/deletestartride", method = RequestMethod.GET)
+	public String deleteStartRide(ModelMap model, HttpServletRequest request) {
+		startrideservice.removeStartRide(Integer.parseInt(request.getParameter("startrideid")));
+		model.addAttribute("startridedeletedflag", 1);
+		return ViewConstants.CROVIEWALLSTARTRIDE;
+	}
+	
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());

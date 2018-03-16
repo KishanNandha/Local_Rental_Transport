@@ -20,32 +20,48 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-	<%@include file="NavBar_USER.jsp"%>
+	<%@include file="NavBar_CRO.jsp"%>
     <div class="content-wrapper">
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
 	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
+	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Booking Conform</li>
+	        <li class="breadcrumb-item active">User Details</li>
 	      </ol>
-	      <c:if test="${bookingfailed == 0}">
-				<div class="alert alert-success alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Success!</strong><br/>
-				  <strong>Booking Id: &nbsp ${bookingid} </strong>
-				</div>	
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.			
-		  </c:if>
-		  <c:if test="${bookingfailed == 1}">
-				<div class="alert alert-danger alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Failed!</strong><br/>
-				  <strong>${bookingerrormsg} </strong>
-				</div>
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.
-		  </c:if>
+	      <div class="alert  progress-bar bg-success active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >User Details!!</strong>
+			</div>
+			<br/>
+	      <br/><br/>
+	      <table align="center">
+	
+	      		<tr><td><label class="form-text text-muted">userID</label></td><td>${userdetails.userID}</td></tr>
+	      		<tr><td><label class="form-text text-muted">userName</label></td><td>${userdetails.userName}</td></tr>
+	      		<tr><td><label class="form-text text-muted">fName</label></td><td>${userdetails.fName}</td></tr>
+	      		<tr> <td><label class="form-text text-muted">lName</label></td><td>${userdetails.lName}</td></tr>
+	      		<tr><td><label class="form-text text-muted">email</label></td><td>${userdetails.email}</td></tr>
+	      		<tr><td><label class="form-text text-muted">phone</label></td><td>${userdetails.phone}</td></tr>
+	      		<tr><td> <label class="form-text text-muted">dob</label></td><td>${userdetails.dob}</td></tr>
+	      		<tr> <td><label class="form-text text-muted">age</label></td><td>${userdetails.age}</td></tr>
+	      		<tr><td><label class="form-text text-muted">userAddress</td></label><td>${userdetails.userAddress}</td></tr>
+	      		<tr><td><label class="form-text text-muted">gender</label></td><td>${userdetails.gender}</td></tr>
+	      		<tr><td><label class="form-text text-muted">aadhaarNo</label></td><td>${userdetails.aadhaarNo}</td></tr>
+	      
+	      </table>
+	      
+	      
+	      
+	     
+	      
+	      
+	     
+	     
+	      
+	      
+	      
         </div>
     </div>
     <%@include file="footer.jsp"%>

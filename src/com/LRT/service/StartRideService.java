@@ -52,9 +52,9 @@ public class StartRideService {
 	}
 
 	@Transactional
-	public void addstartridewithbookingid(StartRide startride) {
+	public void addstartridewithbookingid(int bookingid, StartRide startride) {
 		startridedao.addStartRide(startride);
-		Bookings booking = bookingdao.getBookingsByStartRide(startride.getUserName(), startride);
+		Bookings booking = bookingdao.getBookingsById(bookingid);
 		bookingdao.removeBooking(booking);
 	}
 
@@ -62,6 +62,18 @@ public class StartRideService {
 	public List<StartRide> getStartRideByUsername(String username) {
 
 		return startridedao.listStartRideOfUser(username);
+	}
+
+	@Transactional
+	public List<StartRide> ListStartRide() {
+
+		return startridedao.listStartRide();
+	}
+
+	@Transactional
+	public void removeStartRide(int id) {
+
+		startridedao.removeStartRide(startridedao.getStartRideById(id));
 	}
 
 	@Transactional

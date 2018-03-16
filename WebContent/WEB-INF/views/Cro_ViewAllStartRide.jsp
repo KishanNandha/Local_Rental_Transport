@@ -1,6 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,51 +20,53 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-	<%@include file="NavBar_USER.jsp"%>
+	<%@include file="NavBar_CRO.jsp"%>
     <div class="content-wrapper">
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
 	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
+	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">View Bookings</li>
+	        <li class="breadcrumb-item active">View All Start Ride</li>
 	      </ol>
+	      <div class="alert  progress-bar bg-success active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >View All Start Ride!!</strong>
+			</div>
+			<br/>
 	     
-	      <c:if test="${bookingdeletedflag == 1}">
-				<div class="alert alert-danger alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Deleted!</strong><br/>
-				  <strong>${bookingdeletedmsg}</strong>
-				</div>				
-		  </c:if>
 	       <div class="card  text-white bg-info o-hidden h-100 mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> &nbsp Booking Data Table </div>
+          <i class="fa fa-table"></i> &nbsp Start Ride Data Table </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Booking ID</th>
+                  <th>Start Ride ID</th>
                   <th>Departure Date</th>
                   <th>Departure Time</th>
                   <th>Estimatedend Time</th>
                   <th>Start Store Name</th>
+                  <th>User Name</th>
+                  <th>Cycle Id</th>
                   <th>Delete Action</th>
                 </tr>
               </thead>
               <tbody>
-              <c:forEach items="${bookinglist}" var="bookings">
+              <c:forEach items="${startridelist}" var="bookings">
                 <tr>
-                  <td>${bookings.bookingId}</td>
+                  <td>${bookings.startRideId}</td>
                   <td>${bookings.departureDate}</td>
                   <td>${bookings.departureTime}</td>
                   <td>${bookings.estimatedEndTime}</td>
                   <td>${bookings.startStoreName}</td>
+                  <td>${bookings.userName}</td>
+                  <td>${bookings.cycleId}</td>
                   <td>
-                  	<form method="get" action="deletebooking">
-                  		<input type="hidden" name="bookingid" value="${bookings.bookingId}"/>
+                  	<form method="get" action="deletestartride">
+                  		<input type="hidden" name="bookingid" value="${bookings.startRideId}"/>
                   		<input type="submit" value="Delete" class="btn btn-danger">
                   	</form>
                   </td>

@@ -28,8 +28,13 @@
 	        <li class="breadcrumb-item">
 	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Blank Page</li>
+	        <li class="breadcrumb-item active">Start Ride </li>
 	      </ol>
+	      <div class="alert  progress-bar bg-primary active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >Start Ride Now!!</strong>
+			</div>
+			<br/>
 	      <form:form modelAttribute="startride" action="doaddridewithbooking"
 			method="post">
 			<table align="center">
@@ -40,27 +45,27 @@
 					<form:input path="departureDate" type="hidden"
 							name="departureDate" value="${booking.departureDate}"/>
 					</td>
-					<td><form:errors path="departureDate" cssClass="error" /></td>
+					<td><form:errors path="departureDate" cssClass="alert alert-danger" /></td>
 				</tr>
 				<tr>
 					<td><form:label class="form-text text-muted" path="departureTime">Departure Time</form:label>
 					</td>
 					<td><form:input type="hidden" path="departureTime" name="departureTime" value="${booking.departureTime}"/>
 					<label class="form-text text-muted">${booking.departureTime}</label></td>
-					<td><form:errors path="departureTime" cssClass="error" /></td>
+					<td><form:errors path="departureTime" cssClass="alert alert-danger" /></td>
 				</tr>
 				<tr>
 					<td><label path="estimatedEndTime">Estimated End Time<label></td>
-					<td><input path="estimatedEndTime" value="${booking.estimatedEndTime}" type="hidden"/>
+					<td><form:input path="estimatedEndTime" value="${booking.estimatedEndTime}" type="hidden"/>
 					<label class="form-text text-muted" >${booking.estimatedEndTime}</label></td>
-					<td><form:errors path="estimatedEndTime" cssClass="error" />
+					<td><form:errors path="estimatedEndTime" cssClass="alert alert-danger" />
 					</td>
 				</tr>
 
 				<tr>
 					<td><form:label class="form-text text-muted" path="startStoreName">Start Store Name</form:label>
 					</td>
-					<td><input path="startStoreName" value="${booking.startStoreName}" type="hidden"/>
+					<td><form:input path="startStoreName" value="${booking.startStoreName}" type="hidden"/>
 					<label class="form-text text-muted">${booking.startStoreName}</label></td>
 					<td><form:errors path="startStoreName" cssClass="alert alert-danger" /></td>
 				</tr>
@@ -83,8 +88,8 @@
 				</tr>
 					
 				<tr>
-					<td></td>
-					<td><form:button type="submit" class="btn-success">Submit</form:button></td>
+					<td><input type="hidden" name="bookingid" value="${booking.bookingId}"/></td>
+					<td><form:button type="submit" class="btn btn-primary">Submit</form:button></td>
 				</tr>
 				<tr></tr>
 

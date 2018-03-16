@@ -1,6 +1,6 @@
 <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/login"><i class="fa fa-fw fa-bicycle"></i>  &nbsp Local Rental Transport</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/user/home"><i class="fa fa-fw fa-bicycle"></i>  &nbsp Local Rental Transport</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,7 +27,7 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
            <a class="nav-link" href="${pageContext.request.contextPath}/user/viewbookings">
             <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">View My Rides</span>
+            <span class="nav-link-text">View My Bookings</span>
           </a> 
          
         </li>

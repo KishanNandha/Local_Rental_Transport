@@ -28,9 +28,121 @@
 	        <li class="breadcrumb-item">
 	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Blank Page</li>
+	        <li class="breadcrumb-item active">End ride</li>
 	      </ol>
-	      
+	      <div class="alert  progress-bar bg-danger active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >End Ride!</strong>
+			</div>
+			<br/>
+	      <form:form modelAttribute="endride" action="doendride"
+			method="post">
+			<table align="center">
+				<tr>
+					<td><label class="form-text text-muted" >Start Ride ID:</label></td>
+					<td>${statride.startRideId}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label class="form-text text-muted" >User Name:</label></td>
+					<td>${statride.userName}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label class="form-text text-muted" >Start Store Name:</label></td>
+					<td>${statride.startStoreName}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label class="form-text text-muted" >Departure Date:</label></td>
+					<td>${statride.departureDate}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label class="form-text text-muted" >Departure Time:</label></td>
+					<td>${statride.departureTime}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label class="form-text text-muted" >Estimated End Time:</label></td>
+					<td>${statride.estimatedEndTime}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label class="form-text text-muted" >Cycle Id:</label></td>
+					<td>${statride.cycleId}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td><form:input class="form-control form-control-md" path="startRideId"
+							name="startRideId" value="${statride.startRideId}" type="hidden"/></td>
+					<td><form:errors path="startRideId" cssClass="alert alert-danger" /></td>
+				</tr>
+				<tr>
+					<td><form:label class="form-text text-muted"  path="endTime">End Time</form:label>
+					</td>
+					<td><form:select class="form-control form-control-md" path="endTime" name="endTime">
+							<form:option value="6.00AM"></form:option>
+							<form:option value="7.00AM"></form:option>
+							<form:option value="8.00AM"></form:option>
+							<form:option value="9.00AM"></form:option>
+							<form:option value="10.00AM"></form:option>
+							<form:option value="11.00AM"></form:option>
+							<form:option value="12.00PM"></form:option>
+							<form:option value="1.00PM"></form:option>
+							<form:option value="2.00PM"></form:option>
+							<form:option value="3.00PM"></form:option>
+							<form:option value="4.00PM"></form:option>
+							<form:option value="5.00PM"></form:option>
+							<form:option value="6.00PM"></form:option>
+							<form:option value="7.00PM"></form:option>
+							<form:option value="8.00PM"></form:option>
+							<form:option value="9.00PM"></form:option>
+							<form:option value="10.00PM"></form:option>
+							<form:option value="11.00PM"></form:option>
+						</form:select></td>
+					<td><form:errors path="endTime" cssClass="alert alert-danger" /></td>
+				</tr>
+				<tr>
+					<td><form:label class="form-text text-muted"  path="endStoreName">End Store Name</form:label>
+					</td>
+					<td><form:select class="form-control form-control-md" path="endStoreName" name="endStoreName"
+							type="text">
+
+							<form:options items="${storeslist}" />
+						</form:select></td>
+					<td><form:errors path="endStoreName" cssClass="alert alert-danger" /></td>
+				</tr>
+				
+				</tr>
+						<%-- <tr>
+					<td><form:label class="form-text text-muted"  path="totalAmount">Total Amount</form:label></td>
+					<td>
+						<form:input class="form-control form-control-md" path="totalAmount"
+							name="totalAmount" />
+					</td>
+					<td><form:errors path="totalAmount" cssClass="alert alert-danger" /></td>
+				</tr> --%>
+					<tr>
+					<td><form:label class="form-text text-muted"  path="anyDamage">Any Damage?</form:label></td>
+					<td>
+						<form:select class="form-control form-control-md" path="anyDamage" name="endTime" type="text">
+							<form:option value="NO"></form:option>
+							<form:option value="YES"></form:option>
+						</form:select>
+					</td>
+					<td><form:errors path="anyDamage" cssClass="alert alert-danger" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><form:button type="submit" class="btn btn-danger">End Ride</form:button></td>
+				</tr>
+				<tr></tr>
+
+			</table>
+		</form:form>
         </div>
     </div>
     <%@include file="footer.jsp"%>

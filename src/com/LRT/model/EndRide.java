@@ -31,11 +31,9 @@ public class EndRide {
 	private String endStoreName;
 
 
-	@NotNull(message = "is required")
 	@Column(name = "totaltime")
 	private int totalTime;
 
-	@NotNull(message = "is Required")
 	@Column(name = "totalamount")
 	private int totalAmount;
 

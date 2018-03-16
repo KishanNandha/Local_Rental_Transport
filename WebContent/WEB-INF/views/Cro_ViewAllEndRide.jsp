@@ -20,32 +20,56 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-	<%@include file="NavBar_USER.jsp"%>
+	<%@include file="NavBar_CRO.jsp"%>
     <div class="content-wrapper">
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
 	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
+	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Booking Conform</li>
+	        <li class="breadcrumb-item active">View End Rides</li>
 	      </ol>
-	      <c:if test="${bookingfailed == 0}">
-				<div class="alert alert-success alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Success!</strong><br/>
-				  <strong>Booking Id: &nbsp ${bookingid} </strong>
-				</div>	
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.			
-		  </c:if>
-		  <c:if test="${bookingfailed == 1}">
-				<div class="alert alert-danger alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  <strong>Booking Failed!</strong><br/>
-				  <strong>${bookingerrormsg} </strong>
-				</div>
-				<a href="${pageContext.request.contextPath}/user/home" class="link">Go to Home</a>.
-		  </c:if>
+	     <div class="alert  progress-bar bg-success active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >View End Rides!!</strong>
+			</div>
+			<br/>
+	       <div class="card  text-white bg-info o-hidden h-100 mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> &nbsp Booking Data Table </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>End Ride Id</th>
+                  <th>startRideId</th>
+                  <th>End Time</th>
+                  <th>End Store Name</th>
+                  <th>Total Time</th>
+                  <th>Total Amount</th>
+                  <th>anyDamage</th>
+                </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${endridelist}" var="bookings">
+                <tr>
+                  <td>${bookings.endRideId}</td>
+                  <td>${bookings.startRideId}</td>
+                  <td>${bookings.endTime}</td>
+                  <td>${bookings.endStoreName}</td>
+                  <td>${bookings.totalTime}</td>
+                  <td>${bookings.totalAmount}</td>
+                  <th>${bookings.anyDamage}</th>
+                </tr>
+                </c:forEach>
+                  </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-white ">Updated yesterday at 11:59 PM</div>
+      </div>
         </div>
     </div>
     <%@include file="footer.jsp"%>

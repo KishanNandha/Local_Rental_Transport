@@ -28,12 +28,25 @@
 	        <li class="breadcrumb-item">
 	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Blank Page</li>
+	        <li class="breadcrumb-item active">End ride Panel:</li>
 	      </ol>
+	      <div class="alert  progress-bar bg-warning active">
+	      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+			  <strong class="text-center" >End Ride!!</strong>
+			</div>
+			<br/>
+	      <c:if test="${nostartridefound == 1}">
+				<div class="alert alert-danger alert-dismissible">
+				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				  <strong>No Booking Found!</strong><br/>
+				  <strong>${startridemsg} </strong>
+				</div>	
+				<a href="${pageContext.request.contextPath}/cro/home" class="link">Go to Home</a>.			
+		  </c:if>
 	       <div class="panel panel-warning">
 		      <div class="panel-heading">Enter StartRide Id:</div>
 		      <div class="panel-body">
-		      	<form method="post" action="addridewithbooking">
+		      	<form  action="endride">
 		      		<input type="text" class="form-control form-control-md"  name="startrideid"/><br/>
 		      		<input type="submit" class="btn btn-warning" value="Search"/>
 		      	</form>

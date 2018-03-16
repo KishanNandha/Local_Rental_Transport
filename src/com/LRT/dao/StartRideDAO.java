@@ -73,5 +73,16 @@ public class StartRideDAO {
 
 	}
 
+	@Transactional
+	public List<StartRide> listStartRideByStore(String storename) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(StartRide.class);
+		Criterion criterion = Restrictions.eq("startStoreName", storename);
+		criteria.add(criterion);
+		List<StartRide> bookingList = criteria.list();
+		return bookingList;
+
+	}
+
 
 }

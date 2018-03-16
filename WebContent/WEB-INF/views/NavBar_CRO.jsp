@@ -1,6 +1,6 @@
 <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/login"><i class="fa fa-fw fa-bicycle"></i>  &nbsp Local Rental Transport</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/cro/home"><i class="fa fa-fw fa-bicycle"></i>  &nbsp Local Rental Transport</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,11 +24,11 @@
             <li>
               <a href="${pageContext.request.contextPath}/cro/startridewithbooking">Start ride with booking</a>
             </li>
+            <%-- <li>
+              <a href="${pageContext.request.contextPath}/cro/endridepanel">Edit ride and start</a>
+            </li> --%>
             <li>
-              <a href="forgot-password.html">Edit ride and start</a>
-            </li>
-            <li>
-              <a href="blank.html">View All Start Ride</a>
+              <a href="${pageContext.request.contextPath}/cro/viewallstartride">View All Start Ride</a>
             </li>
           </ul>
         </li>
@@ -39,10 +39,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="endridePages">
             <li>
-              <a href="login.html">End ride</a>
+              <a href="${pageContext.request.contextPath}/cro/endridepanel">End ride</a>
             </li>
             <li>
-              <a href="register.html">View All end Rides</a>
+              <a href="${pageContext.request.contextPath}/cro/viewallendride">View All end Rides</a>
             </li>
           </ul>
         </li>
@@ -53,16 +53,14 @@
           </a>
           <ul class="sidenav-second-level collapse" id="viewitemsPages">
             <li>
-              <a href="login.html">View rides of store</a>
+              <a href="${pageContext.request.contextPath}/cro/viewallridesofstorepanel">View rides of store</a>
             </li>
             <li>
-              <a href="register.html">View rides of user</a>
+              <a href="${pageContext.request.contextPath}/cro/viewallridesofuserpanel">View rides of user</a>
             </li>
+          
             <li>
-              <a href="forgot-password.html">View no of cycles</a>
-            </li>
-            <li>
-              <a href="blank.html">View user details</a>
+              <a href="${pageContext.request.contextPath}/cro/viewalluserdetailspanel">View user details</a>
             </li>
           </ul>
         </li>
