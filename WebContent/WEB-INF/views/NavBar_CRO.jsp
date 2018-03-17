@@ -1,3 +1,4 @@
+<div id="load"></div>
 <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/cro/home"><i class="fa fa-fw fa-bicycle"></i>  &nbsp Local Rental Transport</a>

@@ -125,13 +125,13 @@ public class CroController {
 
 				startrideservice.addstartridewithbookingid(Integer.parseInt(request.getParameter("bookingid")),
 						startride);
-				model.addAttribute("startridefailed", 0);
+				model.addAttribute("startridefailed1", 0);
 				model.addAttribute("startrideid", startride.getStartRideId());
 				return ViewConstants.CROSTARTRIDECONFORM;
 
 			}
 			else {
-				model.addAttribute("startridefailed", 1);
+				model.addAttribute("startridefailed1", 1);
 				model.addAttribute("startrideerrormsg", "you have already started this ride");
 				return ViewConstants.CROSTARTRIDECONFORM;
 			}

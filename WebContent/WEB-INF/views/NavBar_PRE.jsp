@@ -1,3 +1,4 @@
+<div id="load"></div>
 <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/login"><i class="fa fa-fw fa-bicycle"></i>  &nbsp Local Rental Transport</a>
@@ -31,6 +32,7 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
+      
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">

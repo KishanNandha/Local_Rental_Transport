@@ -17,6 +17,7 @@
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
+  
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -55,7 +56,7 @@
 					<td><form:errors path="departureTime" cssClass="alert alert-danger" /></td>
 				</tr>
 				<tr>
-					<td><label path="estimatedEndTime">Estimated End Time<label></td>
+					<td><label class="form-text text-muted" path="estimatedEndTime">Estimated End Time<label></td>
 					<td><form:input path="estimatedEndTime" value="${booking.estimatedEndTime}" type="hidden"/>
 					<label class="form-text text-muted" >${booking.estimatedEndTime}</label></td>
 					<td><form:errors path="estimatedEndTime" cssClass="alert alert-danger" />
@@ -97,6 +98,7 @@
 		</form:form>
         </div>
     </div>
+ 
     <%@include file="footer.jsp"%>
     <!-- Bootstrap core JavaScript-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>

@@ -1,9 +1,19 @@
- <footer class="sticky-footer">
+<%@ page import = "java.io.*,java.util.*" %>
+<%@ page import = "javax.servlet.*,java.text.*" %>
+
+ <footer  class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Local Rental Transport 2018</small>
-          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <%= (new java.util.Date()).toLocaleString()%>
+          <small>Copyright © Local Rental Transport 2018  </small>
+          &nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <span> <%
+         Date dNow = new Date( );
+         SimpleDateFormat ft = 
+         new SimpleDateFormat ("E  yyyy-MM-dd ");
+         out.print(  ft.format(dNow) ); %></span>
+          &nbsp;
+          <i class="fa fa-clock-o" color:red"></i>
+          <span class="clock font-weight-bold font-italic"></span>
         </div>
       </div>
     </footer>
