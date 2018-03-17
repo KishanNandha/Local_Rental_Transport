@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.LRT.ApplicationConstants.ViewConstants;
 import com.LRT.model.Bookings;
+import com.LRT.service.ApplicationMailer;
 import com.LRT.service.BookingService;
 
 
@@ -35,6 +36,9 @@ public class UserController {
 
 	@Autowired
 	private BookingService bookingservice;
+
+	@Autowired
+	private ApplicationMailer mailer;
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
@@ -81,6 +85,12 @@ public class UserController {
 		} else {
 			if (bookingservice.chkBooking(booking)) {
 				bookingservice.addbooking(booking);
+				// get user details
+				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+				// create body of mail
+				String body = "Save booking Id: \n" + booking.getBookingId();
+				// Send a composed mail
+				mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body);
 				model.addAttribute("bookingfailed", 0);
 				model.addAttribute("bookingid", booking.getBookingId());
 				return ViewConstants.USERBOOKINGCONFORM;

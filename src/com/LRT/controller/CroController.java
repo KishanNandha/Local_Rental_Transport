@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.LRT.ApplicationConstants.ViewConstants;
 import com.LRT.model.EndRide;
 import com.LRT.model.StartRide;
+import com.LRT.service.ApplicationMailer;
 import com.LRT.service.BookingService;
 import com.LRT.service.EtartRideService;
 import com.LRT.service.StartRideService;
@@ -41,6 +42,9 @@ public class CroController {
 
 	@Autowired
 	private com.LRT.service.UserDetailsSevice userdetailsservice;
+
+	@Autowired
+	private ApplicationMailer mailer;
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {

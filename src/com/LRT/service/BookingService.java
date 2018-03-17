@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.LRT.dao.BookingDAO;
 import com.LRT.dao.StoresDAO;
+import com.LRT.dao.UserDetailsDAO;
 import com.LRT.model.Bookings;
 import com.LRT.model.Stores;
 
@@ -20,6 +21,9 @@ public class BookingService {
 	StoresDAO storedao;
 	@Autowired
 	BookingDAO bookingdao;
+
+	@Autowired
+	UserDetailsDAO userdetailsdao;
 
 	@Transactional
 	public List<String> getstores() {
@@ -43,6 +47,12 @@ public class BookingService {
 	public Bookings getBookingbyid(int bookingid) {
 
 		return bookingdao.getBookingsById(bookingid);
+	}
+
+	@Transactional
+	public com.LRT.model.UserDetails getDetailsofUser(String username) {
+
+		return userdetailsdao.getUserDetailsByName(username);
 	}
 
 	@Transactional
