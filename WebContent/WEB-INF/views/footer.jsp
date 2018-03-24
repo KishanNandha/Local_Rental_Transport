@@ -5,7 +5,7 @@
       <div class="container">
         <div class="text-center">
           <small>Copyright © Local Rental Transport 2018  </small>
-          &nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp;&nbsp&nbsp&nbsp&nbsp
           <span> <%
          Date dNow = new Date( );
          SimpleDateFormat ft = 
