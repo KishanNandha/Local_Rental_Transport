@@ -20,8 +20,8 @@ import com.paypal.base.rest.PayPalRESTException;
 public class PaymentService {
 
 
-	private final String clientId = "AUFvfyqR6BqVnpEddj2iJXsBxZrryP5M0wBugclTAU_ZFZK8PZUsaqLWyB7t0cKf5kmti_qKw9o4UnkR";
-	private final String clientSecret = "ENMDpW3tad-MQLGOG5VdQ5sPT4zbJnjLo0gnFVCM1QCRFi055sfBCa-E121mUFWvO1B_Ezv-P6JhHUt7";
+	private final String clientId = "";
+	private final String clientSecret = "";
 	private final String mode = "sandbox";
 
 	public Payment proecssPayment(HttpServletRequest request) {
