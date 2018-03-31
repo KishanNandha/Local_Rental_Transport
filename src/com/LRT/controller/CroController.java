@@ -28,6 +28,7 @@ import com.LRT.service.ApplicationMailer;
 import com.LRT.service.BookingService;
 import com.LRT.service.EtartRideService;
 import com.LRT.service.StartRideService;
+import com.LRT.util.MainBody;
 
 @Controller
 @RequestMapping(value = "/cro")
@@ -39,6 +40,8 @@ public class CroController {
 	private StartRideService startrideservice;
 	@Autowired
 	private EtartRideService endrideservice;
+
+	private MainBody mainbody;
 
 	@Autowired
 	private com.LRT.service.UserDetailsSevice userdetailsservice;
@@ -55,8 +58,9 @@ public class CroController {
 
 	@RequestMapping(value = "/home")
 	public String homePage(ModelMap model, HttpSession httpsession) {
+		com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
 		httpsession.setAttribute("sessionuser", getPrincipal());
-
+		httpsession.setAttribute("loginBean", userDetails);
 		return ViewConstants.CRODASHBOARD;
 	}
 
@@ -78,6 +82,13 @@ public class CroController {
 		} else {
 			if (startrideservice.chkStartRide(startride)) {
 				startrideservice.addstartride(startride);
+				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+				// create body of mail
+				mainbody = new MainBody(startride, userDetails.getEmail());
+				String body = mainbody.getStartRideBody();
+				// Send a composed mail
+				/* mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body); */
+				mailer.sendHTMLMail(userDetails.getEmail(), "LRT:Start Ride Details", body);
 				model.addAttribute("startridefailed", 0);
 				model.addAttribute("startrideid", startride.getStartRideId());
 				return ViewConstants.CROSTARTRIDECONFORM;
@@ -129,6 +140,13 @@ public class CroController {
 
 				startrideservice.addstartridewithbookingid(Integer.parseInt(request.getParameter("bookingid")),
 						startride);
+				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+				// create body of mail
+				mainbody = new MainBody(startride, userDetails.getEmail());
+				String body = mainbody.getStartRideBody();
+				// Send a composed mail
+				/* mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body); */
+				mailer.sendHTMLMail(userDetails.getEmail(), "LRT:Start Ride Details", body);
 				model.addAttribute("startridefailed1", 0);
 				model.addAttribute("startrideid", startride.getStartRideId());
 				return ViewConstants.CROSTARTRIDECONFORM;
@@ -169,7 +187,18 @@ public class CroController {
 			if (endrideservice.chkEndRide(endRide)) {
 				endRide.setTotalTime(6);
 				endRide.setTotalAmount(60);
-				endrideservice.addendride(endRide);
+				
+				StartRide startRide =startrideservice.getStartRidebyid(endRide.getStartRideId());
+				endrideservice.addendride(endRide, startRide);
+
+				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+				// create body of mail
+				mainbody = new MainBody(endRide, startRide,
+						userDetails.getEmail());
+				String body = mainbody.getEndRideBody();
+				// Send a composed mail
+				/* mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body); */
+				mailer.sendHTMLMail(userDetails.getEmail(), "LRT:End Ride Details", body);
 				model.addAttribute("endrideid:", endRide.getEndRideId());
 				model.addAttribute("endridefailed", 0);
 				model.addAttribute("TotalTime", endRide.getTotalTime());

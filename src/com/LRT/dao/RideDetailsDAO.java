@@ -7,19 +7,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.LRT.model.RideDetails;
 
+@Transactional
 @Repository
 public class RideDetailsDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Transactional
 	public RideDetails getRideDetailsById(int rideDetailsid) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession.get(RideDetails.class, rideDetailsid);
 	}
 
+	@Transactional
 	public boolean addRideDetails(RideDetails rideDetails) {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
@@ -32,6 +36,7 @@ public class RideDetailsDAO {
 
 	}
 
+	@Transactional
 	public boolean updateRideDetails(RideDetails rideDetails) {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();

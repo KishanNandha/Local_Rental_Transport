@@ -18,7 +18,7 @@
 		<access-denied-handler error-page="/Access_Denied" />
 
 		<form-login login-processing-url="/login" login-page="/login"
-			default-target-url="/user/home" username-parameter="username"
+			default-target-url="/user/bookride" username-parameter="username"
 			password-parameter="password" authentication-failure-url="/login?error" />
 		<!-- enable csrf protection -->
 		<csrf />

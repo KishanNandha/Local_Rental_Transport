@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.LRT.dao.BookingDAO;
 import com.LRT.dao.CycleDAO;
 import com.LRT.dao.EndRideDAO;
+import com.LRT.dao.RideDetailsDAO;
 import com.LRT.dao.StartRideDAO;
 import com.LRT.model.EndRide;
+import com.LRT.model.RideDetails;
 import com.LRT.model.StartRide;
 import com.LRT.model.DTO.RideAllDetails;
 
@@ -32,12 +34,18 @@ public class EtartRideService {
 	@Autowired
 	CycleDAO cycledao;
 
-
+	@Autowired
+	RideDetailsDAO rideDetailsDAO;
 
 	@Transactional
-	public void addendride(EndRide endride)
+	public void addendride(EndRide endride, StartRide startRide)
 	{
 		endridedao.addEndRide(endride);
+		RideDetails ridedetails=new RideDetails();
+		ridedetails.setEndRideId(endride.getEndRideId());
+		ridedetails.setStartRideId(startRide.getStartRideId());
+		ridedetails.setUsername(startRide.getUserName());
+		rideDetailsDAO.addRideDetails(ridedetails);
 	}
 
 	@Transactional

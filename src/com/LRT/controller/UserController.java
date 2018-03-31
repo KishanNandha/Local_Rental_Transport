@@ -27,6 +27,7 @@ import com.LRT.ApplicationConstants.ViewConstants;
 import com.LRT.model.Bookings;
 import com.LRT.service.ApplicationMailer;
 import com.LRT.service.BookingService;
+import com.LRT.util.MainBody;
 
 
 @Controller
@@ -40,6 +41,7 @@ public class UserController {
 	@Autowired
 	private ApplicationMailer mailer;
 
+	private MainBody mainbody;
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
@@ -52,7 +54,9 @@ public class UserController {
 
 	@RequestMapping(value = "/home")
 	public String homePage(ModelMap model, HttpSession httpsession) {
+		com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
 		httpsession.setAttribute("sessionuser", getPrincipal());
+		httpsession.setAttribute("loginBean", userDetails);
 		return ViewConstants.USERDASHBOARD;
 	}
 
@@ -72,7 +76,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/bookride")
-	public String BookRide(ModelMap model) {
+	public String BookRide(ModelMap model, HttpSession httpsession) {
+		com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+		httpsession.setAttribute("sessionuser", getPrincipal());
+		httpsession.setAttribute("loginBean", userDetails);
 		Bookings booking = new Bookings();
 		model.addAttribute("booking", booking);
 		model.addAttribute("storeslist", bookingservice.getstores());
@@ -92,9 +99,11 @@ public class UserController {
 				// get user details
 				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
 				// create body of mail
-				String body = "Save booking Id: \n" + booking.getBookingId();
+				mainbody=new MainBody(booking, userDetails.getEmail());
+				String body = mainbody.getBookingBody();
 				// Send a composed mail
-				mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body);
+				/* mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body); */
+				mailer.sendHTMLMail(userDetails.getEmail(), "LRT:Booking Details", body);
 				model.addAttribute("bookingfailed", 0);
 				model.addAttribute("bookingid", booking.getBookingId());
 				return ViewConstants.USERBOOKINGCONFORM;

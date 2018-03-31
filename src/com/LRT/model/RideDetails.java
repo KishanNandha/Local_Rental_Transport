@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "ridedetails")
@@ -15,16 +13,17 @@ public class RideDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "userid")
+	@Column(name = "rideid")
 	private int rideId;
 
-	@OneToOne()
-	@JoinColumn(name = "startrideid")
-	private StartRide startRideId;
+	@Column(name = "startrideid")
+	private int startRideId;
 
-	@OneToOne()
-	@JoinColumn(name = "endrideid")
-	private EndRide endRideId;
+	@Column(name = "endrideid")
+	private int endRideId;
+
+	@Column(name = "username")
+	private String username;
 
 	public int getRideId() {
 		return rideId;
@@ -34,25 +33,29 @@ public class RideDetails {
 		this.rideId = rideId;
 	}
 
-	public StartRide getStartRideId() {
+	public int getStartRideId() {
 		return startRideId;
 	}
 
-	public void setStartRideId(StartRide startRideId) {
+	public void setStartRideId(int startRideId) {
 		this.startRideId = startRideId;
 	}
 
-	public EndRide getEndRideId() {
+	public int getEndRideId() {
 		return endRideId;
 	}
 
-	public void setEndRideId(EndRide endRideId) {
+	public void setEndRideId(int endRideId) {
 		this.endRideId = endRideId;
 	}
 
-	@Override
-	public String toString() {
-		return "RideDetails [rideId=" + rideId + ", startRideId=" + startRideId + ", endRideId=" + endRideId + "]";
+	public String getUsername() {
+		return username;
 	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 
 }

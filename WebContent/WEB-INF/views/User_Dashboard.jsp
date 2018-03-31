@@ -11,12 +11,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>LRT</title>
+  
   <!-- Bootstrap core CSS-->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -29,7 +31,6 @@
 	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
 	        </li>
 	      </ol>
-	      
         </div>
     </div>
     <%@include file="footer.jsp"%>
@@ -40,6 +41,5 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath}/resources/js/sb-admin.min.js"></script>
-  </div>
 </body>
 </html>

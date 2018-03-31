@@ -25,9 +25,7 @@
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
-	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/user/home">Dashboard</a>
-	        </li>
+	        
 	        <li class="breadcrumb-item active">Book Ride</li>
 	      </ol>
 	      <div class="alert  progress-bar bg-success active">

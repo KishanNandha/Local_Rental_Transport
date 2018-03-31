@@ -31,6 +31,15 @@
 	        <li class="breadcrumb-item active">Blank Page</li>
 	      </ol>
         </div>
+        <!-- SIMPLE CARD -->
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">Card Title</h4>
+                <h6 class="card-subtitle">Card subtitle</h6>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, quas.</p>
+                 <a href="#" class="btn btn-outline-primary">Read More</a>
+            </div>
+        </div>
     </div>
     <%@include file="footer.jsp"%>
     <!-- Bootstrap core JavaScript-->
