@@ -17,7 +17,7 @@ public interface ViewConstants {
 	public static final String CROENDRIDEPANEL = "Cro_EndRidePanel";
 	public static final String CROENDRIDEPAGE = "Cro_EndRidePage";
 	public static final String CROENDRIDECONFORM = "Cro_EndRideConform";
-	public static final String CROSTARTRIDECONFORM = "Cro_EndRideConform";
+	public static final String CROSTARTRIDECONFORM = "Cro_StartRideConform";
 	public static final String CROVIEWALLSTARTRIDE = "Cro_ViewAllStartRide";
 	public static final String CROVIEWALLENDRIDE = "Cro_ViewAllEndRide";
 	public static final String CROVIEWALLUSERRIDE = "Cro_ViewAllUserRide";

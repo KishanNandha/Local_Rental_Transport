@@ -12,10 +12,12 @@ import com.LRT.dao.CycleDAO;
 import com.LRT.dao.EndRideDAO;
 import com.LRT.dao.RideDetailsDAO;
 import com.LRT.dao.StartRideDAO;
+import com.LRT.dao.TransDAO;
 import com.LRT.model.EndRide;
 import com.LRT.model.RideDetails;
 import com.LRT.model.StartRide;
 import com.LRT.model.DTO.RideAllDetails;
+import com.LRT.model.vo.Transactions;
 
 @Service("endrideservice")
 @Transactional
@@ -37,6 +39,9 @@ public class EtartRideService {
 	@Autowired
 	RideDetailsDAO rideDetailsDAO;
 
+	@Autowired
+	TransDAO transdao;
+
 	@Transactional
 	public void addendride(EndRide endride, StartRide startRide)
 	{
@@ -45,6 +50,14 @@ public class EtartRideService {
 		ridedetails.setEndRideId(endride.getEndRideId());
 		ridedetails.setStartRideId(startRide.getStartRideId());
 		ridedetails.setUsername(startRide.getUserName());
+		Transactions tran = new Transactions();
+		tran.setEndRideId(endride.getEndRideId());
+		tran.setEndStoreName(endride.getEndStoreName());
+		tran.setUserName(startRide.getUserName());
+		tran.setTotalTime(endride.getTotalTime());
+		tran.setTotalAmount(endride.getTotalAmount());
+		tran.setDate(startRide.getDepartureDate());
+		transdao.addTrans(tran);
 		rideDetailsDAO.addRideDetails(ridedetails);
 	}
 
@@ -176,5 +189,17 @@ public class EtartRideService {
 			list.add(ridealldetails);
 		}
 		return list;
+	}
+
+	public EndRide calAmount(EndRide endride, StartRide startride) {
+		int totaltime = calHours(endride.getEndTime(), startride.getDepartureTime());
+		endride.setTotalTime(totaltime);
+		endride.setTotalAmount(totaltime * 15);
+		return endride;
+	}
+
+	public int calHours(String endtime, String starttime) {
+
+		return 4;
 	}
 }

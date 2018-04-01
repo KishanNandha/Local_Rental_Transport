@@ -65,6 +65,12 @@ public class StartRideService {
 	}
 
 	@Transactional
+	public List<StartRide> getStartRideByStore(String username) {
+
+		return startridedao.listStartRideOfUser(username);
+	}
+
+	@Transactional
 	public List<StartRide> ListStartRide() {
 
 		return startridedao.listStartRide();

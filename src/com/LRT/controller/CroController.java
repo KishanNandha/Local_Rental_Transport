@@ -179,16 +179,17 @@ public class CroController {
 	}
 
 	@RequestMapping(value = "/doendride", method = RequestMethod.POST)
-	public String DoEndride(ModelMap model, @Valid @ModelAttribute("endride") EndRide endRide,
+	public String DoEndride(HttpSession httpsession, ModelMap model, @Valid @ModelAttribute("endride") EndRide endRide,
 			BindingResult theBindingResult) {
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROENDRIDEPANEL;
 		} else {
 			if (endrideservice.chkEndRide(endRide)) {
-				endRide.setTotalTime(6);
-				endRide.setTotalAmount(60);
-				
 				StartRide startRide =startrideservice.getStartRidebyid(endRide.getStartRideId());
+				endRide = endrideservice.calAmount(endRide, startRide);
+				com.LRT.model.UserDetails clientDetails = bookingservice.getDetailsofUser(startRide.getUserName());
+				httpsession.setAttribute("clientBean", clientDetails);
+
 				endrideservice.addendride(endRide, startRide);
 
 				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
@@ -199,8 +200,13 @@ public class CroController {
 				// Send a composed mail
 				/* mailer.sendMail(userDetails.getEmail(), "LRT:Booking Details", body); */
 				mailer.sendHTMLMail(userDetails.getEmail(), "LRT:End Ride Details", body);
-				model.addAttribute("endrideid:", endRide.getEndRideId());
+				model.addAttribute("StartRideid:", endRide.getEndRideId());
 				model.addAttribute("endridefailed", 0);
+				model.addAttribute("StartStore", startRide.getStartStoreName());
+				model.addAttribute("DepartureDate", startRide.getDepartureDate());
+				model.addAttribute("DepartureTime", startRide.getDepartureTime());
+				model.addAttribute("EndTime", endRide.getEndTime());
+				model.addAttribute("EndStore", endRide.getEndStoreName());
 				model.addAttribute("TotalTime", endRide.getTotalTime());
 				model.addAttribute("TotalAmount", endRide.getTotalAmount());
 				return ViewConstants.CROENDRIDECONFORM;
@@ -267,6 +273,7 @@ public class CroController {
 
 	@RequestMapping(value = "/viewallstartride", method = RequestMethod.GET)
 	public String ViewAllStartRide(ModelMap model) {
+
 		model.addAttribute("storeslist", bookingservice.getstores());
 		return ViewConstants.CROVIEWALLSTARTRIDE;
 	}
@@ -294,6 +301,11 @@ public class CroController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	@RequestMapping(value = "/makepayment")
+	public String makepayment(ModelMap model) {
+		return "pgRedirect";
 	}
 
 }

@@ -1,4 +1,4 @@
-<%@page import="paytm_java.PaytmConstants"%>
+<%@page import="com.LRT.ApplicationConstants.PaytmConstants"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,com.paytm.pg.merchant.CheckSumServiceHelper"%>    

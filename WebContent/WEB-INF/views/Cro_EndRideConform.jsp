@@ -67,18 +67,18 @@ body {
 				<div class="container">
 					<div class="row color-invoice">
 						<div class="col-md-12">
-							#Sr. No: 78660
 							<div class="row">
 								<div class="col-lg-7 col-md-7 col-sm-7">
+									<h1>Local Rental Transport</h1><br/>
 									<h1>INVOICE</h1>
-									<br /> <strong>Email : </strong> info@HtmlSnipp.com <br /> <strong>Call
-										: </strong> +1-6655-44-453
+									<br /> <strong>Email : </strong> localrentaltransport@gmail.com <br /> <strong>Call
+										: </strong> +919428473433
 								</div>
 								<div class="col-lg-5 col-md-5 col-sm-5">
 
-									<h2>Html Snipp LLC</h2>
-									789/89 , Lane Set , New York, <br> Pin- 90-89-78-00, <br>
-									United States.
+									<h2>LRT.</h2>
+									LJ Institute of Engineering & Technology S.G. Highway,<br>380054<br>
+									Ahmedabad
 
 								</div>
 							</div>
@@ -86,21 +86,22 @@ body {
 							<div class="row">
 								<div class="col-lg-7 col-md-7 col-sm-7">
 									<h3>Client Details :</h3>
-									<h5>Jhon Williams</h5>
-									789/90 , Lane Here, New York, <br /> United States
+									<h5>${sessionScope.clientBean.fName } &nbsp; ${sessionScope.clientBean.lName }</h5>
+									 ${sessionScope.clientBean.userAddress }<br /> 
 								</div>
 								<div class="col-lg-5 col-md-5 col-sm-5">
 									<h3>Client Contact :</h3>
-									Mob: +1-99-88-77-55 <br> email: info@domainname.com
+									 ${sessionScope.clientBean.phone }<br> email: ${sessionScope.clientBean.email }
 								</div>
 							</div>
 							<hr />
 							<div class="row">
 								<div class="col-lg-6 col-md-6 col-sm-6">
-									<strong>ITEM DESCRIPTION & DETAILS :</strong>
+									<strong>Ride DESCRIPTION & DETAILS :</strong>
 								</div>
 							</div>
 							<hr />
+							<form action="makepayment">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<div class="table-responsive">
@@ -109,79 +110,85 @@ body {
 												<tr>
 													<th>S. No.</th>
 													<th>Perticulars</th>
-													<th>Quantity.</th>
-													<th>Unit Price</th>
-													<th>Sub Total</th>
+													<th>Unit</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
 													<td>1</td>
-													<td>Website Design</td>
-													<td>1</td>
-													<td>5000 USD</td>
-													<td>5000 USD</td>
+													<td>StartRide ID</td>
+													<td>
+													 <%
+														 	Random randomGenerator = new Random();
+															int randomInt = randomGenerator.nextInt(1000000);
+ 														%>
+													<input type="hidden" id="ORDER_ID" tabindex="1" maxlength="20" size="20"
+															name="ORDER_ID" autocomplete="off"
+																value="ORDS_<%= randomInt %>">
+													${endrideid}</td>
 												</tr>
 												<tr>
 													<td>2</td>
-													<td>Website Development</td>
-													<td>2</td>
-													<td>5000 USD</td>
-													<td>10000 USD</td>
+													<td>Start Store</td>
+													<td>
+													<input type="hidden" id="CUST_ID" tabindex="2" maxlength="30" size="12" name="CUST_ID" autocomplete="off" value="CUST${sessionScope.clientBean.userID }"/>
+													${StartStore}</td>
+													
 												</tr>
 												<tr>
 													<td>3</td>
-													<td>Customization</td>
-													<td>1</td>
-													<td>4000 USD</td>
-													<td>4000 USD</td>
+													<td>Departure Date</td>
+													<td>
+													<input type="hidden" id="INDUSTRY_TYPE_ID" tabindex="4" maxlength="12" size="12" name="INDUSTRY_TYPE_ID" autocomplete="off" value="Retail">
+													${DepartureDate}</td>
 												</tr>
 												<tr>
 													<td>4</td>
-													<td>Plugin Setup</td>
-													<td>1</td>
-													<td>3000 USD</td>
-													<td>3000 USD</td>
+													<td>Departure Time</td>
+													<td>
+													<input type="hidden" id="CHANNEL_ID" tabindex="4" maxlength="12"
+														size="12" name="CHANNEL_ID" autocomplete="off" value="WEB">
+													${DepartureTime}</td>
 												</tr>
+												<tr>
+													<td>5</td>
+													<td>End Time</td>
+													<td>${EndTime}</td>
+												</tr>
+												<tr>
+													<td>6</td>
+													<td>End Store</td>
+													<td>${EndStore}</td>
+												</tr>
+												<tr>
+													<td>7</td>
+													<td>Total Time</td>
+													<td>
+													<input type="hidden" title="TXN_AMOUNT" tabindex="10"
+														type="text" name="TXN_AMOUNT"
+															value="${TotalAmount}">
+													${TotalTime}</td>
+												</tr>
+												
 											</tbody>
 										</table>
 									</div>
 									<hr>
 									<div>
-										<h4>Total : 22000 USD</h4>
-									</div>
-									<hr>
-									<div>
-										<h4>Taxes : 4400 USD ( 20 % on Total Bill )</h4>
-									</div>
-									<hr>
-									<div>
-										<h3>Bill Amount : 26400 USD</h3>
+									
+										<h4>Total : ${TotalAmount} INR</h4>
 									</div>
 									<hr />
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-lg-12 col-md-12 col-sm-12">
-									<strong> Important: </strong>
-									<ol>
-										<li>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit.</li>
-										<li>Nulla eros eros, laoreet non pretium sit amet,
-											efficitur eu magna.</li>
-										<li>Curabitur efficitur vitae massa quis molestie. Ut
-											quis porttitor justo, sed euismod tortor.</li>
-									</ol>
-								</div>
-							</div>
+							
 							<hr />
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12">
-									<a href="#" class="btn btn-success btn-sm">Print Invoice</a>
-									    <a href="#" class="btn btn-info btn-sm">Download In Pdf</a>
+									<input class="btn btn-primary btn-lg" value="CheckOut" type="submit" onclick="">
 								</div>
 							</div>
-
+							</form>
 							<hr>
 							<div class="row"></div>
 						</div>
