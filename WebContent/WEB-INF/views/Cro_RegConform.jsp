@@ -30,9 +30,22 @@
 	        </li>
 	        <li class="breadcrumb-item active">Blank Page</li>
 	      </ol>
+	      <c:if test="${regfailed == 0}">
+				<div class="alert alert-success alert-dismissible">
+				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				  <strong>User Reg. Success!</strong><br/>
+				</div>	
+				<a href="${pageContext.request.contextPath}/cro/home" class="link">Go to Home</a>.			
+		  </c:if>
+		  <c:if test="${regfailed == 1}">
+				<div class="alert alert-danger alert-dismissible">
+				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				  <strong>User Reg Failed!</strong><br/>
+				  <strong>Username already exist try another </strong>
+				</div>
+				<a href="${pageContext.request.contextPath}/cro/home" class="link">Go to Home</a>.
+		  </c:if>
         </div>
-        <!-- SIMPLE CARD -->
-        
     </div>
     <%@include file="footer.jsp"%>
     <!-- Bootstrap core JavaScript-->

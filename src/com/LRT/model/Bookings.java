@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Table(name = "bookings")
@@ -17,23 +18,28 @@ public class Bookings {
 	@Column(name = "bookingid")
 	private int bookingId;
 
+	@NotNull(message = "is Required")
 	@Size(min = 1, message = "is Required")
 	@Column(name = "username")
 	private String userName;
 
+	@NotNull(message = "is Required")
 	@Size(min = 1, message = "is Required")
 	@Column(name = "storename")
 	private String startStoreName;
 
 
+	@NotNull(message = "is Required")
 	@Size(min = 1, message = "is Required")
 	@Column(name = "departuredate")
 	private String departureDate;
 
+	@NotNull(message = "is Required")
 	@Size(min = 1, message = "is Required")
 	@Column(name = "departuretime")
 	private String departureTime;
 
+	@NotNull(message = "is Required")
 	@Size(min = 1, message = "is Required")
 	@Column(name = "estimatedendtime")
 	private String estimatedEndTime;

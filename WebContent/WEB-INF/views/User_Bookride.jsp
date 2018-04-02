@@ -17,6 +17,15 @@
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
+
+<style type="text/css">
+form {
+  
+}
+form .error {
+  color: #ff0000;
+}
+</style>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -33,11 +42,11 @@
 			  <strong class="text-center" >Book Your Ride Now!!</strong>
 			</div>
 			<br/>
-    	<form:form  modelAttribute="booking" action="dobooking" method="post" >
+    	<form:form name="bookride" modelAttribute="booking" action="dobooking" method="post" >
                 <table align="center">
                     <tr class="form-group row" >
                         <td>
-                            <form:label class="form-text text-muted" path="departureDate" type="date">Depature Date</form:label>
+                            <form:label class="form-text text-muted" path="departureDate" id="departureDate" type="date">Depature Date</form:label>
                         </td>
                         <td>
                             <form:input  path="departureDate" class="form-control form-control-md"  type="date" name="departureDate" />
@@ -51,7 +60,7 @@
                             <form:label class="form-text text-muted" path="departureTime" >Departure Time</form:label>
                         </td>
                         <td>
-                            <form:select class="form-control form-control-md" path="departureTime" name="departureTime">
+                            <form:select class="form-control form-control-md" path="departureTime" id="departureTime" name="departureTime" selected="none">
 							   <form:option value="6.00AM"></form:option>
 							   <form:option value="7.00AM"></form:option>
 							   <form:option value="8.00AM"></form:option>
@@ -142,6 +151,35 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath}/resources/js/sb-admin.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+  
+   <script type="text/javascript">
+   $(function() {
+	   // Initialize form validation on the registration form.
+	   // It has the name attribute "registration"
+	   $("form[name='bookride']").validate({
+	     // Specify validation rules
+	     rules: {
+	       // The key name on the left side is the name attribute
+	       // of an input field. Validation rules are defined
+	       // on the right side
+	       departureDate: "required",
+	       departureTime: "required",
+	       
+	     },
+	     // Specify validation error messages
+	     messages: {
+	    	 departureDate: "Please enter departureDate",
+	    	 departureTime: "Please enter departureTime",
+	     },
+	     // Make sure the form is submitted to the destination defined
+	     // in the "action" attribute of the form when valid
+	     submitHandler: function(form) {
+	       form.submit();
+	     }
+	   });
+	 });
+   </script>
   </div>
 </body>
 </html>

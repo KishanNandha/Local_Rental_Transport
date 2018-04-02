@@ -34,6 +34,9 @@ public class ApplicationMailer
         mailSender.send(message);
     }
  
+	/**
+	 * this method will send html mail
+	 */
 	public void sendHTMLMail(String to, String subject, String msg) {
 		try {
 

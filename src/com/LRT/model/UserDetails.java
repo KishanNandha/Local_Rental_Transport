@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
@@ -39,7 +38,6 @@ public class UserDetails {
 	@Column(name = "email")
 	private String email;
 
-	@NotNull(message = "is Required")
 	@Column(name = "phone")
 	private Long phone;
 
@@ -48,7 +46,6 @@ public class UserDetails {
 	private String dob;
 
 	@Range(min = 10, message = "age must be greater than 10")
-	@NotNull(message = "is Required")
 	@Column(name = "age")
 	private int age;
 
@@ -61,7 +58,6 @@ public class UserDetails {
 	private String gender;
 
 	@Digits(integer = 12, fraction = 0)
-	@NotNull(message = "is Required")
 	@Column(name = "aadhaarno")
 	private Long aadhaarNo;
 

@@ -91,9 +91,6 @@ public class UserController {
 	public String DoBooking(ModelMap model, @Valid @ModelAttribute("booking") Bookings booking,
 			BindingResult theBindingResult) {
 		booking.setUserName(getPrincipal());
-		if (theBindingResult.hasErrors()) {
-			return ViewConstants.USERBOOKRIDE;
-		} else {
 			if (bookingservice.chkBooking(booking)) {
 				bookingservice.addbooking(booking);
 				// get user details
@@ -113,8 +110,6 @@ public class UserController {
 				return ViewConstants.USERBOOKINGCONFORM;
 			}
 		}
-	}
-
 	@RequestMapping(value = "/viewbookings")
 	public String ViewBookingPage(ModelMap model) {
 		List<Bookings> list = bookingservice.getBookingsByUsername(getPrincipal());
@@ -128,6 +123,11 @@ public class UserController {
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
 		return "accessDenied";
+	}
+
+	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+	public String subscribe(ModelMap model) {
+		return ViewConstants.USERSUB;
 	}
 
 	@RequestMapping(value = "/deletebooking", method = RequestMethod.GET)

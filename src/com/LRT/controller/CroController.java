@@ -140,7 +140,7 @@ public class CroController {
 
 				startrideservice.addstartridewithbookingid(Integer.parseInt(request.getParameter("bookingid")),
 						startride);
-				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(startride.getUserName());
 				// create body of mail
 				mainbody = new MainBody(startride, userDetails.getEmail());
 				String body = mainbody.getStartRideBody();
@@ -192,7 +192,7 @@ public class CroController {
 
 				endrideservice.addendride(endRide, startRide);
 
-				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+				com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(startRide.getUserName());
 				// create body of mail
 				mainbody = new MainBody(endRide, startRide,
 						userDetails.getEmail());
@@ -306,6 +306,32 @@ public class CroController {
 	@RequestMapping(value = "/makepayment")
 	public String makepayment(ModelMap model) {
 		return "pgRedirect";
+	}
+
+	@RequestMapping(value = "/reg")
+	public String reg(ModelMap model) {
+		com.LRT.model.UserDetails userdata = new com.LRT.model.UserDetails();
+		model.addAttribute("userdata", userdata);
+		return ViewConstants.CROREG;
+	}
+
+	@RequestMapping(value = "/doreg", method = RequestMethod.POST)
+	public String doreg(HttpServletRequest request, ModelMap model,
+			@Valid @ModelAttribute("userdata") com.LRT.model.UserDetails userdata,
+			BindingResult theBindingResult) {
+		if (theBindingResult.hasErrors()) {
+			return ViewConstants.CROREG;
+		} else {
+			if (userdetailsservice.chkUser(userdata.getUserName())) {
+				model.addAttribute("regfailed", 0);
+				userdetailsservice.addUserDatails(userdata, request.getParameter("password"));
+				return ViewConstants.CROREGCONFORM;
+			} else {
+				model.addAttribute("regfailed", 1);
+				return ViewConstants.CROREG;
+			}
+		}
+
 	}
 
 }

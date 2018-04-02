@@ -32,7 +32,7 @@ public class UserRole {
  @Id
  @GenericGenerator(name="native", strategy = "native") 
  @GeneratedValue(generator = "native")
- @Column(name = "user_role_id", unique = true, nullable = false)
+	@Column(name = "user_role_id", unique = true)
  public Integer getUserRoleId() {
  return this.userRoleId;
  }
@@ -42,7 +42,7 @@ public class UserRole {
  }
 
 	@ManyToOne(fetch = FetchType.EAGER)
- @JoinColumn(name = "username", nullable = false)
+	@JoinColumn(name = "username")
  public User getUser() {
  return this.user;
  }
@@ -51,7 +51,7 @@ public class UserRole {
  this.user = user;
  }
 
- @Column(name = "role", nullable = false, length = 45)
+	@Column(name = "role", length = 45)
  public String getRole() {
  return this.role;
  }

@@ -13,57 +13,23 @@
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#startridePages" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">Start Rides</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Transactions</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="startridePages">
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/startridewithoutbooking">Start ride without booking</a>
-            </li>
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/startridewithbooking">Start ride with booking</a>
-            </li>
-            <%-- <li>
-              <a href="${pageContext.request.contextPath}/cro/endridepanel">Edit ride and start</a>
-            </li> --%>
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/viewallstartride">View All Start Ride</a>
-            </li>
-          </ul>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#endridePages" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">End Rides</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Reg. CRO</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="endridePages">
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/endridepanel">End ride</a>
-            </li>
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/viewallendride">View All end Rides</a>
-            </li>
-          </ul>
         </li>
-         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#viewitemsPages" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">View Items</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Add Store</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="viewitemsPages">
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/viewallridesofstorepanel">View rides of store</a>
-            </li>
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/viewallridesofuserpanel">View rides of user</a>
-            </li>
-          
-            <li>
-              <a href="${pageContext.request.contextPath}/cro/viewalluserdetailspanel">View user details</a>
-            </li>
-          </ul>
         </li>
       </ul>
       <ul class="navbar-nav sidenav-toggler">

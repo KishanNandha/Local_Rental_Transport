@@ -30,9 +30,9 @@
          
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="${pageContext.request.contextPath}/user/subscribe">
             <i class="fa fa-fw fa-inr"></i>
-            <span class="nav-link-text">My Credits</span>
+            <span class="nav-link-text">My Subscription</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">

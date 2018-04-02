@@ -8,6 +8,7 @@ public interface ViewConstants {
 	public static final String USERBOOKRIDE = "User_Bookride";
 	public static final String USERBOOKINGCONFORM = "User_BookingConform";
 	public static final String USERVIEWBOOKING = "User_View_Bookings";
+	public static final String USERSUB = "User_Sub";
 
 	// Cro pages
 	public static final String CRODASHBOARD = "Cro_Dashboard";
@@ -26,4 +27,6 @@ public interface ViewConstants {
 	public static final String CROVIEWALLUSERDETAILSPANELS = "Cro_ViewAllUserDetailsPanel";
 	public static final String CROVIEWALLRIDEOFSTORE = "Cro_ViewAllRideOfStore";
 	public static final String CROVIEWALLRIDEOFSTOREPANEL = "Cro_ViewAllRideofStorePanel";
+	public static final String CROREG = "Cro_Reg";
+	public static final String CROREGCONFORM = "Cro_RegConform";
 }

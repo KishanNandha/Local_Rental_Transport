@@ -17,6 +17,13 @@
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
+<style type="text/css">
+form {
+}
+form .error {
+  color: #ff0000;
+}
+</style>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -35,13 +42,13 @@
 			  <strong class="text-center" >Start Ride Now!!</strong>
 			</div>
 			<br/>
-	      <form:form modelAttribute="startride"
+	      <form:form name="startridewithoutbooking" modelAttribute="startride"
 							action="doaddridewithoutbooking" method="post">
 							<table align="center">
 								<tr>
 									<td><form:label class="form-text text-muted" path="departureDate" type="date">Depature Date</form:label>
 									</td>
-									<td><form:input class="form-control form-control-md"  path="departureDate" type="date"
+									<td><form:input class="form-control form-control-md" id="departureDate"  path="departureDate" type="date"
 											name="departureDate" /></td>
 									<td><form:errors path="departureDate" cssClass="alert alert-danger" />
 									</td>
@@ -123,8 +130,8 @@
 
 								<tr>
 								<tr>
-									<td><form:label class="form-text text-muted" path="userName">Username</form:label></td>
-									<td><form:input class="form-control form-control-md"  path="userName" name="userName" /></td>
+									<td><form:label class="form-text text-muted" path="userName" >Username</form:label></td>
+									<td><form:input id="userName" class="form-control form-control-md"  path="userName" name="userName" /></td>
 									<td><form:errors path="userName" cssClass="alert alert-danger" /></td>
 								</tr>
 								<tr>
@@ -145,6 +152,34 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath}/resources/js/sb-admin.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+   <script type="text/javascript">
+   $(function() {
+	   // Initialize form validation on the registration form.
+	   // It has the name attribute "registration"
+	   $("form[name='startridewithoutbooking']").validate({
+	     // Specify validation rules
+	     rules: {
+	       // The key name on the left side is the name attribute
+	       // of an input field. Validation rules are defined
+	       // on the right side
+	       departureDate: "required",
+	       userName: "required"
+	     },
+	     // Specify validation error messages
+	     messages: {
+	    	 departureDate: "Please enter departureDate",
+	    	 userName: "Please enter userName"
+	    	 
+	     },
+	     // Make sure the form is submitted to the destination defined
+	     // in the "action" attribute of the form when valid
+	     submitHandler: function(form) {
+	       form.submit();
+	     }
+	   });
+	 });
+   </script>
   </div>
 </body>
 </html>

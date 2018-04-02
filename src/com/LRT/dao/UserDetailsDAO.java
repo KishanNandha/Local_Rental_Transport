@@ -11,7 +11,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.LRT.model.User;
 import com.LRT.model.UserDetails;
+import com.LRT.model.UserRole;
 
 @Repository
 public class UserDetailsDAO {
@@ -35,6 +37,30 @@ public class UserDetailsDAO {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
 			currentSession.save(userDetails);
+			return true;
+		} catch (Exception ex) {
+
+			return false;
+		}
+
+	}
+
+	public boolean addUser(User user) {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			currentSession.save(user);
+			return true;
+		} catch (Exception ex) {
+
+			return false;
+		}
+
+	}
+
+	public boolean addUserRole(UserRole userrole) {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			currentSession.save(userrole);
 			return true;
 		} catch (Exception ex) {
 
