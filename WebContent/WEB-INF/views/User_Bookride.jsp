@@ -61,8 +61,6 @@ form .error {
                         </td>
                         <td>
                             <form:select class="form-control form-control-md" path="departureTime" id="departureTime" name="departureTime" selected="none">
-							   <form:option value=""></form:option>
-												<form:option value=""></form:option>
 											<form:option value="6.00 AM"></form:option>
 											<form:option value="7.00 AM"></form:option>
 											<form:option value="8.00 AM"></form:option>
@@ -93,8 +91,6 @@ form .error {
                         </td>
                         <td>
                             <form:select class="form-control form-control-md" path="estimatedEndTime" name="estimatedEndTime">
-							   <form:option value=""></form:option>
-												<form:option value=""></form:option>
 											<form:option value="6.00 AM"></form:option>
 											<form:option value="7.00 AM"></form:option>
 											<form:option value="8.00 AM"></form:option>

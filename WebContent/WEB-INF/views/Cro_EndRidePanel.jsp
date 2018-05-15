@@ -17,6 +17,14 @@
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
+<style type="text/css">
+form {
+  
+}
+form .error {
+  color: #ff0000;
+}
+</style>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -46,8 +54,8 @@
 	       <div class="panel panel-warning">
 		      <div class="panel-heading">Enter StartRide Id:</div>
 		      <div class="panel-body">
-		      	<form  action="endride">
-		      		<input type="text" class="form-control form-control-md"  name="startrideid"/><br/>
+		      	<form name="endridepanel" action="endride">
+		      		<input type="text" class="form-control form-control-md" id="startrideid" name="startrideid"/><br/>
 		      		<input type="submit" class="btn btn-warning" value="Search"/>
 		      	</form>
 		      </div>
@@ -62,6 +70,30 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath}/resources/js/sb-admin.min.js"></script>
-  </div>
+	   <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+	 <script type="text/javascript">
+   $(function() {
+	   // Initialize form validation on the registration form.
+	   // It has the name attribute "registration"
+	   $("form[name='endridepanel']").validate({
+	     // Specify validation rules
+	     rules: {
+	       // The key name on the left side is the name attribute
+	       // of an input field. Validation rules are defined
+	       // on the right side
+	       startrideid: "required",
+	       
+	     },
+	     // Specify validation error messages
+	     messages: {
+	     },
+	     // Make sure the form is submitted to the destination defined
+	     // in the "action" attribute of the form when valid
+	     submitHandler: function(form) {
+	       form.submit();
+	     }
+	   });
+	 });
+   </script>
 </body>
 </html>

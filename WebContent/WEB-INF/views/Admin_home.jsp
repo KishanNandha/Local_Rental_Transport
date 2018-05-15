@@ -148,7 +148,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-sm-6">
+                  <!--   <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
                             <a href="#">
                                 <div class="circle-tile-heading purple">
@@ -166,7 +166,7 @@
                                 <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                                                      
         

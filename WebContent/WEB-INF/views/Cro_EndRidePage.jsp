@@ -84,7 +84,6 @@
 					<td><form:label class="form-text text-muted"  path="endTime">End Time</form:label>
 					</td>
 					<td><form:select class="form-control form-control-md" path="endTime" name="endTime">
-								<form:option value=""></form:option>
 											<form:option value="6.00 AM"></form:option>
 											<form:option value="7.00 AM"></form:option>
 											<form:option value="8.00 AM"></form:option>

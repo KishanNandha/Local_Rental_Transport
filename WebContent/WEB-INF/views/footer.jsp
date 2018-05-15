@@ -1,6 +1,13 @@
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ page import = "javax.servlet.*,java.text.*" %>
-
+<noscript>
+    <style type="text/css">
+        .pagecontainer {display:none;}
+    </style>
+    <div class="noscriptmsg">
+    You don't have javascript enabled.  Good luck with that.
+    </div>
+</noscript>
  <footer  class="sticky-footer">
       <div class="container">
         <div class="text-center">

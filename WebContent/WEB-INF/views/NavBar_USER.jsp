@@ -35,7 +35,7 @@
             <span class="nav-link-text">My Subscription</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="tables.html">
             <i class="fa fa-fw fa-edit"></i>
             <span class="nav-link-text">Complain</span>
@@ -46,7 +46,7 @@
             <i class="fa fa-fw fa-lightbulb-o"></i>
             <span class="nav-link-text">Feedback</span>
           </a>
-        </li>
+        </li> -->
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">

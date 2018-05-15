@@ -43,12 +43,12 @@
             <span class="nav-link-text">User rides</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <%-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Feedback</span>
           </a>
-        </li>
+        </li> --%>
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">

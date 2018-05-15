@@ -17,6 +17,14 @@
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
+<style type="text/css">
+form {
+  
+}
+form .error {
+  color: #ff0000;
+}
+</style>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -39,7 +47,7 @@
 		      <div class="panel-heading">Enter Hourly Rate:</div>
 		      <div class="panel-body">
 		      <div class="alert bg-warning"><b>Current Rate:&nbsp;${hourlyRate}</b></div>
-		      	<form action="changehourlyrate">
+		      	<form name="changehourlyrate" action="changehourlyrate">
 		      		<input type="text" class="form-control form-control-md"  name="rate"/><br/>
 		      		<input type="submit" class="btn btn-info" value="Save!"/>
 		      	</form>
@@ -55,6 +63,31 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath}/resources/js/sb-admin.min.js"></script>
+  	<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+	 <script type="text/javascript">
+   $(function() {
+	   // Initialize form validation on the registration form.
+	   // It has the name attribute "registration"
+	   $("form[name='changehourlyrate']").validate({
+	     // Specify validation rules
+	     rules: {
+	       // The key name on the left side is the name attribute
+	       // of an input field. Validation rules are defined
+	       // on the right side
+	       rate: "required",
+	       
+	     },
+	     // Specify validation error messages
+	     messages: {
+	     },
+	     // Make sure the form is submitted to the destination defined
+	     // in the "action" attribute of the form when valid
+	     submitHandler: function(form) {
+	       form.submit();
+	     }
+	   });
+	 });
+   </script>
   </div>
 </body>
 </html>
