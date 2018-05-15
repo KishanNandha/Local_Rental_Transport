@@ -1,7 +1,13 @@
 package com.LRT.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +48,9 @@ public class EtartRideService {
 	@Autowired
 	TransDAO transdao;
 
+	@Autowired
+	HttpSession httpSession;
+
 	@Transactional
 	public void addendride(EndRide endride, StartRide startRide)
 	{
@@ -69,6 +78,9 @@ public class EtartRideService {
 			int flag = 0;
 			for (EndRide b : list) {
 				if (b.equals(endride)) {
+					flag = 1;
+				}
+				if (endride.getStartRideId() == b.getStartRideId()) {
 					flag = 1;
 				}
 			}
@@ -194,12 +206,33 @@ public class EtartRideService {
 	public EndRide calAmount(EndRide endride, StartRide startride) {
 		int totaltime = calHours(endride.getEndTime(), startride.getDepartureTime());
 		endride.setTotalTime(totaltime);
-		endride.setTotalAmount(totaltime * 15);
+		endride.setTotalAmount(totaltime * (int) httpSession.getAttribute("hourlyRate"));
 		return endride;
 	}
 
 	public int calHours(String endtime, String starttime) {
-
+		int result = 0;
+		DateFormat formatter = new SimpleDateFormat("hh:mm a");
+		try {
+			String date1 = "26/02/2011";
+			String date2 = "27/02/2011";
+			String format = "dd/MM/yyyy hh:mm a";
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			Date dateObj1 = sdf.parse(date1 + " " + starttime);
+			Date dateObj2 = sdf.parse(date2 + " " + endtime);
+			System.out.println(dateObj1);
+			System.out.println(dateObj2);
+			long diff = dateObj2.getTime() - dateObj1.getTime();
+			double diffInHours = diff / ((double) 1000 * 60 * 60);
+			result = (int) Math.ceil(diffInHours);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 4;
+	}
+
+	public int getHourlyRate() {
+		return endridedao.getHourlyRate();
 	}
 }

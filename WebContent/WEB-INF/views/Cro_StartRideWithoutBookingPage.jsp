@@ -57,24 +57,25 @@ form .error {
 									<td><form:label class="form-text text-muted" path="departureTime">Departure Time</form:label>
 									</td>
 									<td><form:select class="form-control form-control-md"  path="departureTime" name="departureTime">
-											<form:option value="6.00AM"></form:option>
-											<form:option value="7.00AM"></form:option>
-											<form:option value="8.00AM"></form:option>
-											<form:option value="9.00AM"></form:option>
-											<form:option value="10.00AM"></form:option>
-											<form:option value="11.00AM"></form:option>
-											<form:option value="12.00PM"></form:option>
-											<form:option value="1.00PM"></form:option>
-											<form:option value="2.00PM"></form:option>
-											<form:option value="3.00PM"></form:option>
-											<form:option value="4.00PM"></form:option>
-											<form:option value="5.00PM"></form:option>
-											<form:option value="6.00PM"></form:option>
-											<form:option value="7.00PM"></form:option>
-											<form:option value="8.00PM"></form:option>
-											<form:option value="9.00PM"></form:option>
-											<form:option value="10.00PM"></form:option>
-											<form:option value="11.00PM"></form:option>
+											<form:option value=""></form:option>
+											<form:option value="6.00 AM"></form:option>
+											<form:option value="7.00 AM"></form:option>
+											<form:option value="8.00 AM"></form:option>
+											<form:option value="9.00 AM"></form:option>
+											<form:option value="10.00 AM"></form:option>
+											<form:option value="11.00 AM"></form:option>
+											<form:option value="12.00 PM"></form:option>
+											<form:option value="1.00 PM"></form:option>
+											<form:option value="2.00 PM"></form:option>
+											<form:option value="3.00 PM"></form:option>
+											<form:option value="4.00 PM"></form:option>
+											<form:option value="5.00 PM"></form:option>
+											<form:option value="6.00 PM"></form:option>
+											<form:option value="7.00 PM"></form:option>
+											<form:option value="8.00 PM"></form:option>
+											<form:option value="9.00 PM"></form:option>
+											<form:option value="10.00 PM"></form:option>
+											<form:option value="11.00 PM"></form:option>
 										</form:select></td>
 									<td><form:errors path="departureTime" cssClass="alert alert-danger" />
 									</td>
@@ -84,24 +85,25 @@ form .error {
 											Time</form:label></td>
 									<td><form:select class="form-control form-control-md"  path="estimatedEndTime"
 											name="estimatedEndTime">
-											<form:option value="6.00AM"></form:option>
-											<form:option value="7.00AM"></form:option>
-											<form:option value="8.00AM"></form:option>
-											<form:option value="9.00AM"></form:option>
-											<form:option value="10.00AM"></form:option>
-											<form:option value="11.00AM"></form:option>
-											<form:option value="12.00PM"></form:option>
-											<form:option value="1.00PM"></form:option>
-											<form:option value="2.00PM"></form:option>
-											<form:option value="3.00PM"></form:option>
-											<form:option value="4.00PM"></form:option>
-											<form:option value="5.00PM"></form:option>
-											<form:option value="6.00PM"></form:option>
-											<form:option value="7.00PM"></form:option>
-											<form:option value="8.00PM"></form:option>
-											<form:option value="9.00PM"></form:option>
-											<form:option value="10.00PM"></form:option>
-											<form:option value="11.00PM"></form:option>
+											<form:option value=""></form:option>
+											<form:option value="6.00 AM"></form:option>
+											<form:option value="7.00 AM"></form:option>
+											<form:option value="8.00 AM"></form:option>
+											<form:option value="9.00 AM"></form:option>
+											<form:option value="10.00 AM"></form:option>
+											<form:option value="11.00 AM"></form:option>
+											<form:option value="12.00 PM"></form:option>
+											<form:option value="1.00 PM"></form:option>
+											<form:option value="2.00 PM"></form:option>
+											<form:option value="3.00 PM"></form:option>
+											<form:option value="4.00 PM"></form:option>
+											<form:option value="5.00 PM"></form:option>
+											<form:option value="6.00 PM"></form:option>
+											<form:option value="7.00 PM"></form:option>
+											<form:option value="8.00 PM"></form:option>
+											<form:option value="9.00 PM"></form:option>
+											<form:option value="10.00 PM"></form:option>
+											<form:option value="11.00 PM"></form:option>
 										</form:select></td>
 									<td><form:errors path="estimatedEndTime" cssClass="alert alert-danger" />
 									</td>

@@ -154,6 +154,14 @@ public class UserController {
 		return userName;
 	}
 
+	@RequestMapping(value = "/editprofilePage", method = RequestMethod.GET)
+	public String editProfile(ModelMap model) {
+		return ViewConstants.EDITPROFILE;
+	}
 
+	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
+	public String doeditProfile(ModelMap model) {
+		return ViewConstants.EDITPROFILE;
+	}
 
 }

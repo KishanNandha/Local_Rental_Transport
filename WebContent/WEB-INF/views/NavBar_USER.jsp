@@ -59,6 +59,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-user"></i>
+            &nbsp;
+            <b class="text-danger">USER:</b>&nbsp;<b class="text-white">${sessionuser}</b>
             <span class="d-lg-none">My Profile
               <span class="badge badge-pill badge-primary">edit</span>
             </span>
@@ -69,11 +71,11 @@
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">My profile:</h6>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <a  href="#" class="dropdown-item" data-toggle="modal" data-target="#profileModal">
               <strong>View profile</strong>
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/user/editprofilePage">
               <strong>Edit profile</strong>
             </a>
             <div class="dropdown-divider"></div>
@@ -143,3 +145,29 @@
       </ul>
     </div>
   </nav>
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+          <div class="modal-body">
+          	<div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                          <img src="https://www.svgimages.com/svg-image/s5/man-passportsize-silhouette-icon-256x256.png" alt="stack photo" class="img">
+                      </div>
+                      <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+                          <div class="container" style="border-bottom:1px solid black">
+                            <h2>${loginBean.fName}&nbsp;${loginBean.lName}</h2>
+                          </div>
+                            <hr>
+                          <ul class="container details">
+                            <li><p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>${loginBean.phone}</p></li>
+                            <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>${loginBean.dob}</p></li>
+                            <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span>${loginBean.age}</p></li>
+                            <li><p><span class="glyphicon glyphicon-new-window one" style="width:50px;"></span><a href="#">${loginBean.email}</p></a>
+                            <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span>${loginBean.userAddress}</p></li>
+                            <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span>${loginBean.gender}</p></li>
+                            <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span>${loginBean.aadhaarNo}</p></li>
+                          </ul>
+                      </div>
+          </div>
+        </div>
+      </div>
+    </div>

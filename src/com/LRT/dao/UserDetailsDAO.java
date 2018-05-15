@@ -20,6 +20,11 @@ public class UserDetailsDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	public void updateUserDetails(UserDetails userDetails) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.update(userDetails);
+	}
+
 	public UserDetails getUserDetailsByName(String username) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Criteria criteria = currentSession.createCriteria(UserDetails.class);

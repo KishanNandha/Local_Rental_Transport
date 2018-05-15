@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.LRT.model.EndRide;
+import com.LRT.model.vo.Finance;
 
 @Transactional
 @Repository("endridedao")
@@ -85,6 +86,12 @@ public class EndRideDAO {
 
 	}
 
-
+	@Transactional
+	public int getHourlyRate() {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Finance.class);
+		Finance finance = (Finance) criteria.uniqueResult();
+		return finance.getHourlyRate();
+	}
 
 }

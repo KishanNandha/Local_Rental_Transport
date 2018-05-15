@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import = "java.io.*,java.util.*" %>
+<%@ page import = "javax.servlet.*,java.text.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,21 +19,20 @@
   <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet">
-	 <link href="${pageContext.request.contextPath}/resources/css/my_admin.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/css/my_admin.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-	<%@include file="NavBar_CRO.jsp"%>
+	<%@include file="NavBar_ADMIN.jsp"%>
     <div class="content-wrapper">
     	<div class="container-fluid">
 	      <!-- Breadcrumbs-->
 	      <ol class="breadcrumb">
 	        <li class="breadcrumb-item">
-	          <a href="${pageContext.request.contextPath}/cro/home">Dashboard</a>
+	          <a href="${pageContext.request.contextPath}/ADMIN/home">Dashboard</a>
 	        </li>
-	        <li class="breadcrumb-item active">Blank Page</li>
 	      </ol>
-	      	        
+	        
     <div class="container-2">
       <div class="row ">
          <div class="col-lg-12">
@@ -54,63 +55,9 @@
         </div>
                                    
         <div class="row" >
-        		<div class="col-lg-2 col-sm-6">
-                        <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/startridewithoutbooking">
-                                <div class="circle-tile-heading blue">
-                                    <i class="fa fa-tasks fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div class="circle-tile-content blue">
-                                <div class="circle-tile-description text-faded">
-                                    Start Ride Without Booking
-                                </div>
-                                <div class="circle-tile-number text-faded">
-                                    <span id="sparklineB"></span>
-                                </div>
-                                <a href="${pageContext.request.contextPath}/cro/startridewithoutbooking" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/startridewithbooking">
-                                <div class="circle-tile-heading blue">
-                                    <i class="fa fa-tasks fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div class="circle-tile-content blue">
-                                <div class="circle-tile-description text-faded">
-                                     Start Ride With Booking
-                                </div>
-                                <div class="circle-tile-number text-faded">
-                                    <span id="sparklineB"></span>
-                                </div>
-                                <a href="${pageContext.request.contextPath}/cro/startridewithbooking" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6">
-                        <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/endridepanel">
-                                <div class="circle-tile-heading blue">
-                                    <i class="fa fa-tasks fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div class="circle-tile-content blue">
-                                <div class="circle-tile-description text-faded">
-                                    End Ride
-                                </div>
-                                <div class="circle-tile-number text-faded">
-                                    <span id="sparklineB"></span>
-                                </div>
-                                <a href="${pageContext.request.contextPath}/cro/endridepanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6">
-                        <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/viewalluserdetailspanel">
+                            <a href="${pageContext.request.contextPath}/admin/viewalluserdetailspanel">
                                 <div class="circle-tile-heading dark-blue">
                                     <i class="fa fa-users fa-fw fa-3x"></i>
                                 </div>
@@ -120,16 +67,34 @@
                                    User-Info
                                 </div>
                                 <div class="circle-tile-number text-faded">
+                                    65
                                     <span id="sparklineA"></span>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/cro/viewalluserdetailspanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="${pageContext.request.contextPath}/admin/viewalluserdetailspanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/reg">
+                            <a href="${pageContext.request.contextPath}/admin/changehourlyratepanel">
+                                <div class="circle-tile-heading green">
+                                    <i class="fa fa-money fa-fw fa-3x"></i>
+                                </div>
+                            </a>
+                            <div class="circle-tile-content green">
+                                <div class="circle-tile-description text-faded">
+                                    Hourly Rate
+                                </div>
+                                <div class="circle-tile-number text-faded">
+                                    15
+                                </div>
+                                <a href="${pageContext.request.contextPath}/admin/changehourlyratepanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="${pageContext.request.contextPath}/admin/reg">
                                 <div class="circle-tile-heading orange">
                                     <i class="fa fa-bell fa-fw fa-3x"></i>
                                 </div>
@@ -139,14 +104,15 @@
                                     ADD user/cro
                                 </div>
                                 <div class="circle-tile-number text-faded">
+                                   0
                                 </div>
-                                <a href="${pageContext.request.contextPath}/cro/reg" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="${pageContext.request.contextPath}/admin/reg" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/viewallrideofstore">
+                            <a href="${pageContext.request.contextPath}/admin/viewallrideofstore">
                                 <div class="circle-tile-heading blue">
                                     <i class="fa fa-tasks fa-fw fa-3x"></i>
                                 </div>
@@ -156,15 +122,16 @@
                                     Store Rides
                                 </div>
                                 <div class="circle-tile-number text-faded">
+                                    10
                                     <span id="sparklineB"></span>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/cro/viewallridesofstorepanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="${pageContext.request.contextPath}/admin/viewallridesofstorepanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="${pageContext.request.contextPath}/cro/viewallridesofuserpanel">
+                            <a href="${pageContext.request.contextPath}/admin/viewallridesofuserpanel">
                                 <div class="circle-tile-heading red">
                                     <i class="fa fa-shopping-cart fa-fw fa-3x"></i>
                                 </div>
@@ -174,13 +141,31 @@
                                     User rides
                                 </div>
                                 <div class="circle-tile-number text-faded">
+                                    24
                                     <span id="sparklineC"></span>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/cro/viewallridesofuserpanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="${pageContext.request.contextPath}/admin/viewallridesofuserpanel" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading purple">
+                                    <i class="fa fa-comments fa-fw fa-3x"></i>
+                                </div>
+                            </a>
+                            <div class="circle-tile-content purple">
+                                <div class="circle-tile-description text-faded">
+                                    Feedback
+                                </div>
+                                <div class="circle-tile-number text-faded">
+                                    96
+                                    <span id="sparklineD"></span>
+                                </div>
+                                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                                                      
@@ -224,8 +209,8 @@
 
    
  
+   
         </div>
-        
     </div>
     <%@include file="footer.jsp"%>
     <!-- Bootstrap core JavaScript-->

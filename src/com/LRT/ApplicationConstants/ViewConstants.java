@@ -3,6 +3,9 @@ package com.LRT.ApplicationConstants;
 public interface ViewConstants {
 	// ****cant change conform to confirm**********
 
+	// other pages
+	public static final String EDITPROFILE = "Edit_Profile";
+
 	// User Pages
 	public static final String USERDASHBOARD = "User_Dashboard";
 	public static final String USERBOOKRIDE = "User_Bookride";
@@ -29,4 +32,8 @@ public interface ViewConstants {
 	public static final String CROVIEWALLRIDEOFSTOREPANEL = "Cro_ViewAllRideofStorePanel";
 	public static final String CROREG = "Cro_Reg";
 	public static final String CROREGCONFORM = "Cro_RegConform";
+	
+	//admin pages
+	public static final String ADMINHOME="Admin_home";
+	public static final String ADMINHOURLY = "Admin_hourly";
 }

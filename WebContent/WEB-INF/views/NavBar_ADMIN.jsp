@@ -8,27 +8,45 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/home">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/viewalluserdetailspanel">
             <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Transactions</span>
+            <span class="nav-link-text">User-Info</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/changehourlyratepanel">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Hourly Rate</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/reg">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text"> ADD user/cro</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/viewallridesofstorepanel">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Store Rides</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/viewallridesofuserpanel">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">User rides</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
             <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Reg. CRO</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="${pageContext.request.contextPath}/cro/home">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Add Store</span>
+            <span class="nav-link-text">Feedback</span>
           </a>
         </li>
       </ul>
@@ -43,6 +61,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-user"></i>
+            &nbsp;
+            <b class="text-danger">ADMIN:</b>&nbsp;<b class="text-white">${sessionuser}</b>
             <span class="d-lg-none">My Profile
               <span class="badge badge-pill badge-primary">edit</span>
             </span>

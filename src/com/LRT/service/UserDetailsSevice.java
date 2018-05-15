@@ -17,6 +17,11 @@ public class UserDetailsSevice {
 	UserDetailsDAO userdetailsdao;
 
 	@Transactional
+	public void updateUserDetails(UserDetails userdetails) {
+		userdetailsdao.updateuserDetails(userdetails);
+	}
+
+	@Transactional
 	public UserDetails getUserDatails(String username) {
 
 		return userdetailsdao.getUserDetailsByName(username);
@@ -28,6 +33,18 @@ public class UserDetailsSevice {
 		User user = new User(userdetails.getUserName(), password, true);
 		UserRole userrole = new UserRole(user, "ROLE_USER");
 		userdetailsdao.addUserRole(userrole);
+		userdetailsdao.addUser(user);
+		return userdetailsdao.adduserDetails(userdetails);
+	}
+
+	@Transactional
+	public boolean addCRODatails(UserDetails userdetails, String password) {
+
+		User user = new User(userdetails.getUserName(), password, true);
+		UserRole crorole = new UserRole(user, "ROLE_CRO");
+		UserRole userrole = new UserRole(user, "ROLE_USER");
+		userdetailsdao.addUserRole(userrole);
+		userdetailsdao.addUserRole(crorole);
 		userdetailsdao.addUser(user);
 		return userdetailsdao.adduserDetails(userdetails);
 	}

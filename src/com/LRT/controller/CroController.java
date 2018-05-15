@@ -49,6 +49,9 @@ public class CroController {
 	@Autowired
 	private ApplicationMailer mailer;
 
+	@Autowired
+	HttpSession httpSession;
+
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 
@@ -56,16 +59,22 @@ public class CroController {
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 
+	public void commonService() {
+		com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
+		httpSession.setAttribute("sessionuser", getPrincipal());
+		httpSession.setAttribute("loginBean", userDetails);
+		httpSession.setAttribute("hourlyRate", endrideservice.getHourlyRate());
+	}
+
 	@RequestMapping(value = "/home")
 	public String homePage(ModelMap model, HttpSession httpsession) {
-		com.LRT.model.UserDetails userDetails = bookingservice.getDetailsofUser(getPrincipal());
-		httpsession.setAttribute("sessionuser", getPrincipal());
-		httpsession.setAttribute("loginBean", userDetails);
+		commonService();
 		return ViewConstants.CRODASHBOARD;
 	}
 
 	@RequestMapping(value = "/startridewithoutbooking")
 	public String startRidewithoutbooking(ModelMap model) {
+		commonService();
 		StartRide startRide = new StartRide();
 		model.addAttribute("startride", startRide);
 		model.addAttribute("storeslist", bookingservice.getstores());
@@ -73,10 +82,10 @@ public class CroController {
 		return ViewConstants.CROSTARTRIDEWITHOUTBOOKINGPAGE;
 	}
 
-
 	@RequestMapping(value = "/doaddridewithoutbooking", method = RequestMethod.POST)
 	public String Dostart(ModelMap model, @Valid @ModelAttribute("startride") StartRide startride,
 			BindingResult theBindingResult) {
+		commonService();
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROSTARTRIDEWITHOUTBOOKINGPAGE;
 		} else {
@@ -104,12 +113,14 @@ public class CroController {
 
 	@RequestMapping(value = "/startridewithbooking")
 	public String startridewithbooking(ModelMap model) {
+		commonService();
 		model.addAttribute("nobookingfound", 0);
 		return ViewConstants.CROSTARTRIDEWITHBOOKINGPANEL;
 	}
 
 	@RequestMapping(value = "/addridewithbooking")
 	public String startridewithbookingpage(ModelMap model, HttpServletRequest request) {
+		commonService();
 		if (bookingservice.getBookingbyid(Integer.parseInt(request.getParameter("bookingid"))) != null)
 		{
 
@@ -133,6 +144,7 @@ public class CroController {
 	@RequestMapping(value = "/doaddridewithbooking", method = RequestMethod.POST)
 	public String Dostartride(ModelMap model, @Valid @ModelAttribute("startride") StartRide startride,
 			BindingResult theBindingResult, HttpServletRequest request) {
+		commonService();
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROSTARTRIDEWITHBOOKINGPAGE;
 		} else {
@@ -170,6 +182,7 @@ public class CroController {
 
 	@RequestMapping(value = "/endride")
 	public String EndRidePage(ModelMap model, HttpServletRequest request) {
+		commonService();
 		EndRide endRide = new EndRide();
 		model.addAttribute("endride", endRide);
 		model.addAttribute("storeslist", bookingservice.getstores());
@@ -181,6 +194,7 @@ public class CroController {
 	@RequestMapping(value = "/doendride", method = RequestMethod.POST)
 	public String DoEndride(HttpSession httpsession, ModelMap model, @Valid @ModelAttribute("endride") EndRide endRide,
 			BindingResult theBindingResult) {
+		commonService();
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROENDRIDEPANEL;
 		} else {
@@ -222,6 +236,7 @@ public class CroController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(ModelMap model, HttpServletRequest request,
 			HttpServletResponse response) {
+		commonService();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
@@ -232,6 +247,7 @@ public class CroController {
 
 	@RequestMapping(value = "/viewallridesofstorepanel", method = RequestMethod.GET)
 	public String ViewAllRideOfStore(ModelMap model) {
+		commonService();
 		model.addAttribute("storeslist", bookingservice.getstores());
 		return ViewConstants.CROVIEWALLRIDEOFSTOREPANEL;
 	}
@@ -260,6 +276,7 @@ public class CroController {
 
 	@RequestMapping(value = "/viewallrideofstore")
 	public String ViewAllRideOfStorePage(ModelMap model, HttpServletRequest request) {
+		commonService();
 		model.addAttribute("startridelist", endrideservice.getAllStartRideDetails(request.getParameter("storename")));
 		model.addAttribute("endridelist", endrideservice.getAllEndRideDetails(request.getParameter("storename")));
 		return ViewConstants.CROVIEWALLRIDEOFSTORE;
@@ -267,19 +284,21 @@ public class CroController {
 
 	@RequestMapping(value = "/viewallendride", method = RequestMethod.GET)
 	public String ViewAllEndRide(ModelMap model) {
+		commonService();
 		model.addAttribute("endridelist", endrideservice.ListEndRide());
 		return ViewConstants.CROVIEWALLENDRIDE;
 	}
 
 	@RequestMapping(value = "/viewallstartride", method = RequestMethod.GET)
 	public String ViewAllStartRide(ModelMap model) {
-
+		commonService();
 		model.addAttribute("storeslist", bookingservice.getstores());
 		return ViewConstants.CROVIEWALLSTARTRIDE;
 	}
 
 	@RequestMapping(value = "/deletestartride", method = RequestMethod.GET)
 	public String deleteStartRide(ModelMap model, HttpServletRequest request) {
+		commonService();
 		startrideservice.removeStartRide(Integer.parseInt(request.getParameter("startrideid")));
 		model.addAttribute("startridedeletedflag", 1);
 		return ViewConstants.CROVIEWALLSTARTRIDE;
@@ -287,6 +306,7 @@ public class CroController {
 	
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
+		commonService();
 		model.addAttribute("user", getPrincipal());
 		return "accessDenied";
 	}
@@ -310,6 +330,7 @@ public class CroController {
 
 	@RequestMapping(value = "/reg")
 	public String reg(ModelMap model) {
+		commonService();
 		com.LRT.model.UserDetails userdata = new com.LRT.model.UserDetails();
 		model.addAttribute("userdata", userdata);
 		return ViewConstants.CROREG;
@@ -319,6 +340,7 @@ public class CroController {
 	public String doreg(HttpServletRequest request, ModelMap model,
 			@Valid @ModelAttribute("userdata") com.LRT.model.UserDetails userdata,
 			BindingResult theBindingResult) {
+		commonService();
 		if (theBindingResult.hasErrors()) {
 			return ViewConstants.CROREG;
 		} else {
@@ -332,6 +354,16 @@ public class CroController {
 			}
 		}
 
+	}
+
+	@RequestMapping(value = "/editprofilePage", method = RequestMethod.GET)
+	public String editProfile(ModelMap model) {
+		return ViewConstants.EDITPROFILE;
+	}
+
+	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
+	public String doeditProfile(ModelMap model) {
+		return ViewConstants.EDITPROFILE;
 	}
 
 }
