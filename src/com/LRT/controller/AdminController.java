@@ -67,12 +67,13 @@ public class AdminController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+		commonService();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		model.addAttribute("msg", "You've been logged outsuccessfully.");
-		return "login";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value = "/viewallridesofstorepanel", method = RequestMethod.GET)

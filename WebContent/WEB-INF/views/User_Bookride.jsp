@@ -43,10 +43,11 @@ form .error {
 			</div>
 			<br/>
     	<form:form name="bookride" modelAttribute="booking" action="dobooking" method="post" >
-                <table align="center">
+                <table align="center" >
                     <tr class="form-group row" >
                         <td>
                             <form:label class="form-text text-muted" path="departureDate" id="departureDate" type="date">Depature Date</form:label>
+          
                         </td>
                         <td>
                             <form:input  path="departureDate" class="form-control form-control-md"  type="date" name="departureDate" />

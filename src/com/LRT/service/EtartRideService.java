@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -229,10 +230,20 @@ public class EtartRideService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 4;
+		return getRandomNumberInRange(4, 12);
 	}
 
 	public int getHourlyRate() {
 		return endridedao.getHourlyRate();
+	}
+
+	private int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
 	}
 }
